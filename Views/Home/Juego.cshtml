@@ -1,0 +1,37 @@
+<div> 
+</div>
+
+
+
+@foreach(Cartas c in ViewBag.Cartas1){
+
+<button>
+<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">@c.nombre</div>
+  <div class="card-body">
+    <h5 class="card-title">@c.nombre</h5>
+    <p class="card-text">@c.puntosAtaque</p>
+    <p class="card-text">@c.puntosDefensa</p>
+</div>
+</button>
+}
+
+@foreach(Cartas c2 in ViewBag.Cartas2){
+
+<button onclick="TirarCarta()">
+<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+  <div class="card-header">@c2.nombre</div>
+  <div class="card-body">
+    <h5 class="card-title">@c2.nombre</h5>
+    <p class="card-text">@c2.puntosAtaque</p>
+    <p class="card-text">@c2.puntosDefensa</p>
+</div>
+</button>
+}
+
+
+
+<script>
+ 
+
+</script>
