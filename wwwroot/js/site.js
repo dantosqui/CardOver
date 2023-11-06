@@ -6,12 +6,18 @@
 
 function TirarCarta(idCarta, jugador){
 
-const cartaid=jugador + ' ' + idCarta
+const cartaid= jugador + ' ' + idCarta
 
-const carta = document.GetElementById(cartaid)
+const carta = document.getElementById(cartaid)
+console.log(carta)
 
 document.getElementById('divdelmedio').appendChild(carta)
 
+}
+
+function TirarDado(jugador, idCarta){
+    const rnd = Math.floor(Math.random() * 5);
+    
 }
 
 function Duelo(idCartaJug1, idCartaJug2){
