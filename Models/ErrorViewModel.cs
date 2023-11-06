@@ -1,4 +1,4 @@
-namespace TPBase.Models;
+namespace cardover.Models;
 
 public class ErrorViewModel
 {

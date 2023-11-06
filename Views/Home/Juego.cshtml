@@ -2,34 +2,50 @@
 </div>
 
 
+<script>
+function guardarVariables(){
+if(localStorage.length == 0){
+     localStorage.setItem("Cartas1",'@ViewBag.Cartas1')   
+       localStorage.setItem("Cartas2",'@ViewBag.Cartas2')  
+    }else{
+      '@ViewBag.Cartas1' = localStorage.getItem("Cartas1")
+       '@ViewBag.Cartas2' = localStorage.getItem("Cartas2")
+       console.log("aaaaa")
+    }
+  }
+</script>
+@for(int i = 0; i<ViewBag.Cartas1.Count; i++){
 
-@foreach(Cartas c in ViewBag.Cartas1){
-
-<button>
-<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-  <div class="card-header">@c.nombre</div>
+<button onclick='TirarCarta(@i, "cartas1")'>
+<div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="cartas1 @i">
+  <div class="card-header">@ViewBag.Cartas1[i].nombre</div>
   <div class="card-body">
-    <h5 class="card-title">@c.nombre</h5>
-    <p class="card-text">@c.puntosAtaque</p>
-    <p class="card-text">@c.puntosDefensa</p>
+    <h5 class="card-title">@ViewBag.Cartas1[i].nombre</h5>
+    <p class="card-text">@ViewBag.Cartas1[i].puntosAtaque</p>
+    <p class="card-text">@ViewBag.Cartas1[i].puntosDefensa</p>
+</div>
+</button>
+}
+@for(int i=0; i<ViewBag.Cartas2.Count; i++){
+
+<button onclick='TirarCarta(@i, "cartas2")'>
+<div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="cartas2 @i">
+  <div class="card-header">@ViewBag.Cartas2[i].nombre</div>
+  <div class="card-body">
+    <h5 class="card-title">@ViewBag.Cartas2[i].nombre</h5>
+    <p class="card-text">@ViewBag.Cartas2[i].puntosAtaque</p>
+    <p class="card-text">@ViewBag.Cartas2[i].puntosDefensa</p>
 </div>
 </button>
 }
 
-@foreach(Cartas c2 in ViewBag.Cartas2){
+<div id="divdelmedio" style="border:1px solid black">
 
-<button onclick="TirarCarta()">
-<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-  <div class="card-header">@c2.nombre</div>
-  <div class="card-body">
-    <h5 class="card-title">@c2.nombre</h5>
-    <p class="card-text">@c2.puntosAtaque</p>
-    <p class="card-text">@c2.puntosDefensa</p>
 </div>
+
+<button onclick="ReiniciarPartida()">
+reiniciar partida
 </button>
-}
-
-
 
 <script>
  

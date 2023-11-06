@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace TPBase.Controllers;
+namespace cardover.Controllers;
 
 public class HomeController : Controller
 {

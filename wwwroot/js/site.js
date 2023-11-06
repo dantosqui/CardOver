@@ -3,6 +3,24 @@
 
 // Write your JavaScript code.
 
+
+function TirarCarta(idCarta, jugador){
+
+const cartaid=jugador + ' ' + idCarta
+
+const carta = document.GetElementById(cartaid)
+
+document.getElementById('divdelmedio').appendChild(carta)
+
+}
+
 function Duelo(idCartaJug1, idCartaJug2){
 
+}
+
+function ReiniciarPartida(){
+    localStorage.empty()
+    
+    location.reload()
+    
 }
