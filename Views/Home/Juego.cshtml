@@ -2,20 +2,8 @@
 </div>
 
 
-<script>
-function guardarVariables(){
-if(localStorage.length == 0){
-     localStorage.setItem("Cartas1",'@ViewBag.Cartas1')   
-       localStorage.setItem("Cartas2",'@ViewBag.Cartas2')  
-    }else{
-      '@ViewBag.Cartas1' = localStorage.getItem("Cartas1")
-       '@ViewBag.Cartas2' = localStorage.getItem("Cartas2")
-       console.log("aaaaa")
-    }
-  }
-</script>
-
-@for(int i = 0; i<ViewBag.Cartas1.Count; i++){
+@{int i = 0;}
+@while(i<ViewBag.Cartas1.Count){
 
 <button onclick='TirarCarta(@i, "cartas1")'>
 <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="cartas1 @i">
@@ -26,35 +14,34 @@ if(localStorage.length == 0){
     <p class="card-text">@ViewBag.Cartas1[i].puntosDefensa</p>
 </div>
 </button>
+@{i++;}
 } 
 
-@for(int i=0; i<ViewBag.Cartas2.Count; i++){
+@while(i<ViewBag.Cartas2.Count){
 
 <button onclick='TirarCarta(@i, "cartas2")'>
 <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="cartas2 @i">
-  <div class="card-header">@ViewBag.Cartas2[i].nombre</div>
+  <div class="card-header">@ViewBag.Cartas2[i-4].nombre</div>
   <div class="card-body">
-    <h5 class="card-title">@ViewBag.Cartas2[i].nombre</h5>
-    <p class="card-text">@ViewBag.Cartas2[i].puntosAtaque</p>
-    <p class="card-text">@ViewBag.Cartas2[i].puntosDefensa</p>
+    <h5 class="card-title">@ViewBag.Cartas2[i-4].nombre</h5>
+    <p class="card-text">@ViewBag.Cartas2[i-4].puntosAtaque</p>
+    <p class="card-text">@ViewBag.Cartas2[i-4].puntosDefensa</p>
 </div>
 </button>
+@{i++;}
 }
 
 
 <div id="divdelmedio" style="border:1px solid black">
 
 
-<button onclick="TirarDado()">Tirar Dado</button>
+<button onclick="TirarDado(@ViewBag.Cartas1, @ViewBag.Cartas2)">Tirar Dado</button>
 </div>
 
 <button onclick="Duelo()">
 Iniciar
 </button>
 
-<button onclick="ReiniciarPartida()">
-reiniciar partida
-</button>
 
 <script>
  
