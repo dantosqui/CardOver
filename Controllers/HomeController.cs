@@ -30,6 +30,7 @@ public class HomeController : Controller
         
         ViewBag.Cartas1=CartasJug1;
         ViewBag.Cartas2=CartasJug2;
+       
         return View("Juego");
     }
 

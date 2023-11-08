@@ -1,42 +1,42 @@
-<div> 
-</div>
 
 
 @{int i = 0;}
 @while(i<ViewBag.Cartas1.Count){
 
-<button onclick='TirarCarta(@i, "cartas1")'>
-<div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="cartas1 @i">
+<button onclick='TirarCarta(@i, "cartas1", puedeTirar1)'> <!--Sacar cartas1 y cartas2 de los paarametros-->
+<div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="@i">
   <div class="card-header">@ViewBag.Cartas1[i].nombre</div>
   <div class="card-body">
     <h5 class="card-title">@ViewBag.Cartas1[i].nombre</h5>
     <p class="card-text">@ViewBag.Cartas1[i].puntosAtaque</p>
     <p class="card-text">@ViewBag.Cartas1[i].puntosDefensa</p>
 </div>
-</button>
-@{i++;}
-} 
-
-@while(i<ViewBag.Cartas2.Count){
-
-<button onclick='TirarCarta(@i, "cartas2")'>
-<div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="cartas2 @i">
-  <div class="card-header">@ViewBag.Cartas2[i-4].nombre</div>
-  <div class="card-body">
-    <h5 class="card-title">@ViewBag.Cartas2[i-4].nombre</h5>
-    <p class="card-text">@ViewBag.Cartas2[i-4].puntosAtaque</p>
-    <p class="card-text">@ViewBag.Cartas2[i-4].puntosDefensa</p>
 </div>
 </button>
-@{i++;}
+i++;
+} 
+@{int j = 0;}
+@while(j<ViewBag.Cartas2.Count){
+<button onclick='TirarCarta(@i, "cartas2", puedeTirar2)'>
+<div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="@i">
+  <div class="card-header">@ViewBag.Cartas2[j].nombre</div>
+  <div class="card-body">
+    <h5 class="card-title">@ViewBag.Cartas2[j].nombre</h5>
+    <p class="card-text dañ">@ViewBag.Cartas2[j].puntosAtaque</p>
+    <p class="card-text">@ViewBag.Cartas2[j].puntosDefensa</p>
+</div>
+</div>
+</button>
+i++;
+j++;
 }
 
 
 <div id="divdelmedio" style="border:1px solid black">
 
-
-<button onclick="TirarDado(@ViewBag.Cartas1, @ViewBag.Cartas2)">Tirar Dado</button>
 </div>
+<button onclick="TirarDado()">Tirar Dado</button>
+
 
 <button onclick="Duelo()">
 Iniciar
@@ -47,3 +47,10 @@ Iniciar
  
 
 </script>
+
+
+<p id="puedeTirar1" hidden="true">verdadero</p>
+<p id="puedeTirar2" hidden="true">verdadero</p>
+<audio onended="soundtrack()" src="https://vgmsite.com/soundtracks/plants-vs.-zombies/bgtwdvngxd/04.%20Grasswalk.mp3" autoplay allow="autoplay" >
+
+</audio>
