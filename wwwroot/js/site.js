@@ -43,9 +43,10 @@ const canciones = [
     "https://vgmsite.com/soundtracks/plants-vs.-zombies/vvvsnwaufk/06.%20Moongrains.mp3",
     "https://vgmsite.com/soundtracks/plants-vs.-zombies/behsmtlvrz/05.%20Loonboon.mp3",
 "https://vgmsite.com/soundtracks/plants-vs.-zombies/bgtwdvngxd/04.%20Grasswalk.mp3",
-"https://vgmsite.com/soundtracks/plants-vs.-zombies/rqnczgecuc/10.%20Ultimate%20Battle.mp3",
-
+"https://vgmsite.com/soundtracks/plants-vs.-zombies/rqnczgecuc/10.%20Ultimate%20Battle.mp3"
 ]
-function Soundtrack(){
-
+function Soundtrack(mucara){
+const id = canciones.findIndex(x => x == mucara.src)
+if(id <3) mucara.src = canciones[id+1]
+else mucara.src = canciones[0]
 }
