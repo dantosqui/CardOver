@@ -64,8 +64,11 @@ function TirarDado(){
 
     console.log(danioRecibeTotal1)
     console.log(vida1)
-    
+
+    /*NO ME SALE LO TERMINO DESPUES */
+    $("#progressBar1").css("width", "vida1");  
     document.getElementById("progressBar1").style.width = vida1
+    console.log(document.getElementById("progressBar1"))
 }
 
 function Duelo(idCartaJug1, idCartaJug2){
