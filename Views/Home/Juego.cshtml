@@ -15,10 +15,10 @@
           <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="@i">
 
             <div class="card-body">
-              <div class="card-header">@ViewBag.Cartas1[i].nombre</div>
-              <p class="card-text danio">@ViewBag.Cartas1[i].puntosAtaque</p>
-              <h5 class="card-title">@ViewBag.Cartas1[i].nombre</h5>
-              <p class="card-text defenza">@ViewBag.Cartas1[i].puntosDefensa</p>
+              <div id='cartaNombre_@i' class="card-header">@ViewBag.Cartas1[i].nombre</div>
+              <p id ='puntosAtaque_@i' class="card-text danio">@ViewBag.Cartas1[i].puntosAtaque</p>
+              <h5 id='cartaNombre_@i' class="card-title">@ViewBag.Cartas1[i].nombre</h5>
+              <p id='puntosDefensa_@i' class="card-text defenza">@ViewBag.Cartas1[i].puntosDefensa</p>
             </div>
 
 
@@ -30,34 +30,35 @@
       </div>i++;
     } 
   </div>
+
+
   @{int j = 0;}
   <div id="cartasjugador2">
-  @while(j<ViewBag.Cartas2.Count){
-    
-    <div id = "@i">
-      <div id='lugarCarta_@i'>
+    @while(j<ViewBag.Cartas2.Count){
 
-        <button onclick='TirarCarta(@i, "cartas2", puedeTirar2)'>
-          <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="@i">
+      <div id = "@i">
+        <div id='lugarCarta_@i'>
 
-            <div class="card-body">
-              <div class="card-header">@ViewBag.Cartas2[j].nombre</div>
-              <p class="card-text danio">@ViewBag.Cartas2[j].puntosAtaque</p>
-              <h5 class="card-title">@ViewBag.Cartas2[j].nombre</h5>
+          <button onclick='TirarCarta(@i, "cartas2", puedeTirar2)'>
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="@i">
+
+              <div class="card-body">
+                <div id='cartaNombre_@i' class="card-header">@ViewBag.Cartas2[j].nombre</div>
+                <p id='puntosAtaque_@i' class="card-text danio">@ViewBag.Cartas2[j].puntosAtaque</p>
+                <h5 id='cartaNombre_@i' class="card-title">@ViewBag.Cartas2[j].nombre</h5>
+              </div>
+                <p id='puntosDefensa_@i' class="card-text defenza">@ViewBag.Cartas2[j].puntosDefensa</p>
+
             </div>
-              <p class="card-text defenza">@ViewBag.Cartas2[j].puntosDefensa</p>
+          </button>
+        </div>
 
-          </div>
-        </button>
+        i++;
+        j++;
       </div>
-
-      i++;
-      j++;
-    </div>
-  }
+    }
   
 
-  </div>
   </div>
 </div>
 
@@ -101,9 +102,9 @@
 </div>
 
 
-<div class="modal fade" id="divTodasLasCartas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<!-- <div class="modal fade" id="divTodasLasCartas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 <img src = "pilonDeCartas">
-</div>
+</div> -->
 
 
 

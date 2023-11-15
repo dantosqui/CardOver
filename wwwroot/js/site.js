@@ -73,14 +73,10 @@ function TirarDado(){
     console.log(document.getElementById("progressBar1"))
 }
 
-function Duelo(idCartaJug1, idCartaJug2){
+// function Duelo(idCartaJug1, idCartaJug2){
 
-}
+// }
 
-function ReabastecerCarta(){
-    
-
-}
 
 function ReiniciarPartida(){
     localStorage.empty()
@@ -112,9 +108,14 @@ function RecargarCarta(){
             success: 
             function (response)
             {
-                //hay un div que queda vacio cuando pones la carta fijate si podes usar eso
-                //se le agrega la carta pero no se ocmo 
-                //se le pasa la lista de cartas del jugador por parametros y lo agrega?       
+                const carta1ID = document.getElementById("cartaTirada1").innerHTML
+                const carta2ID = document.getElementById("cartaTirada2").innerHTML
+                const 
+               document.getElementById("lugarCarta_" + carta1ID).appendChild(document.getElementById(carta1ID))
+               document.getElementById("lugarCarta_" + carta2ID).appendChild(document.getElementById(carta2ID))
+                document.getElementById("puedeTirar1").innerHTML = "verdadero"
+                document.getElementById("puedeTirar2").innerHTML = "verdadero"
+                
 
             }
         }
