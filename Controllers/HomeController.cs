@@ -40,7 +40,16 @@ public class HomeController : Controller
         return View();
     }
 
-    
+    public Cartas RecargarCarta(){
+        List<Cartas> listaCartasa = BD.TraerCartas();
+        Random rnd = new Random();
+        int r = rnd.Next(listaCartasa.Count);
+
+        Cartas cartaResultado = new Cartas();
+        cartaResultado = listaCartasa[r];
+        Console.WriteLine("Carta resultado: " + cartaResultado);
+        return cartaResultado;
+    }
 
 
 }

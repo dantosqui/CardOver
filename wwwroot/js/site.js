@@ -27,6 +27,7 @@ let vida2 = 100
 function TirarDado(){
     const rnd1 = Math.floor(Math.random() * 5);
     const rnd2 = Math.floor(Math.random() * 5);
+    console.log(rnd1 + "DADO 1 RESULTADO DADO")
 
     const divdelmedio=document.getElementById("divdelmedio")
     const cartas=divdelmedio.querySelectorAll(".card")
@@ -54,19 +55,20 @@ function TirarDado(){
     vida1 -= (danioRecibeTotal1/constVida)*100
     vida2 -= (danioRecibeTotal2/constVida)*100
         
-    document.getElementById("daño1").innerHTML="daño 1:",danio1;
-    document.getElementById("daño2").innerHTML="daño 2:",danio2;
-    document.getElementById("defensa1").innerHTML="defensa 1:",defensa1;
-    document.getElementById("defensa2").innerHTML="defensa 2:",defensa2;
-    document.getElementById("num2").innerHTML="dado 2:",rnd2;
-    document.getElementById("num1").innerHTML="dado 1:",rnd1;
+    document.getElementById("daño1").innerHTML="daño 1:" + danio1;
+    document.getElementById("daño2").innerHTML="daño 2:"+ danio2;
+    document.getElementById("defensa1").innerHTML="defensa 1:"+ defensa1;
+    document.getElementById("defensa2").innerHTML="defensa 2:" + defensa2;
+    document.getElementById("num2").innerHTML="dado 2:"+ rnd2;
+    document.getElementById("num1").innerHTML="dado 1:"+ rnd1;
     $('#idModal').modal('show')
 
     console.log(danioRecibeTotal1)
     console.log(vida1)
 
     /*NO ME SALE LO TERMINO DESPUES */
-    $("#progressBar1").css("width", "vida1");  
+    $("#progressBar1").css({"width": vida1 + "%"});  
+    $("#progressBar2").css({"width": vida2 + "%"});  
     document.getElementById("progressBar1").style.width = vida1
     console.log(document.getElementById("progressBar1"))
 }
@@ -97,4 +99,24 @@ function Soundtrack(mucara){
 const id = canciones.findIndex(x => x == mucara.src)
 if(id <3) mucara.src = canciones[id+1]
 else mucara.src = canciones[0]
+}
+
+function RecargarCarta(){
+
+    $.ajax(
+        {
+            type: 'GET',
+            dataType: 'JSON', 
+            url: '/Home/RecargarCarta',
+            data: {}, 
+            success: 
+            function (response)
+            {
+                //hay un div que queda vacio cuando pones la carta fijate si podes usar eso
+                //se le agrega la carta pero no se ocmo 
+                //se le pasa la lista de cartas del jugador por parametros y lo agrega?       
+
+            }
+        }
+    )
 }
