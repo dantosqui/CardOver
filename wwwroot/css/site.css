@@ -23,3 +23,9 @@ footer {
 .listaPeronista{
   text-align: center;
 }
+
+
+#wrappercartas{
+  display: flex;
+  justify-content: space-between;
+}

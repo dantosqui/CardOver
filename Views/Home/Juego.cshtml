@@ -2,16 +2,17 @@
   <div id="progressBar1" class="progress-bar" style="width: 100%; background-color: green"></div>
 </div>
 
-<div id="wrappercartas">
-  @{int ronda = 1;}
+ @{int ronda = 1;}
   @{int i = 0;}
+<div id="wrappercartas">
+ 
   <div id="cartasjugador1">
     @while(i<ViewBag.Cartas1.Count){
-    
+
       <div id ="@i">
         <div id='lugarCarta_@i'>
-
-        <button onclick='TirarCarta(@i, "cartas1", puedeTirar1)'> <!--Sacar cartas1 y cartas2 de los paarametros-->
+                                                 
+        <button onclick='TirarCarta(@i, "cartas1", puedeTirar1)'> 
           <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="@i">
 
             <div class="card-body">
@@ -27,10 +28,10 @@
       </div>
 
 
-      </div>i++;
+      </div>
+      i++;
     } 
   </div>
-
 
   @{int j = 0;}
   <div id="cartasjugador2">
@@ -53,9 +54,10 @@
           </button>
         </div>
 
-        i++;
-        j++;
+
       </div>
+       i++;
+        j++;
     }
   
 
@@ -102,16 +104,12 @@
 </div>
 
 
-<!-- <div class="modal fade" id="divTodasLasCartas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="divTodasLasCartas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 <img src = "pilonDeCartas">
-</div> -->
+</div>
 
 
 
-<script>
- 
-
-</script>
 
 
 <p id="puedeTirar1" hidden="true">verdadero</p>

@@ -30,7 +30,7 @@ public class HomeController : Controller
         
         ViewBag.Cartas1=CartasJug1;
         ViewBag.Cartas2=CartasJug2;
-       
+      
         return View("Juego");
     }
 
@@ -41,6 +41,7 @@ public class HomeController : Controller
     }
 
     public Cartas RecargarCarta(){
+        Console.WriteLine("recargarcarta corrido");
         List<Cartas> listaCartasa = BD.TraerCartas();
         Random rnd = new Random();
         int r = rnd.Next(listaCartasa.Count);

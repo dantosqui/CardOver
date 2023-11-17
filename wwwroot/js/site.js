@@ -1,30 +1,37 @@
-﻿let cartaTirada=false;
-function TirarCarta(idCarta, jugador,puedeTirar){
+﻿var cartaTirada=false;
 
-const carta = document.getElementById(idCarta)
-let cartaTirada 
-if(idCarta <4)
-cartaTirada = document.getElementById('puedeTirar1')
-else
-cartaTirada = document.getElementById('puedeTirar2')
-const lugarCarta = "lugarCarta_" + idCarta
-const divdelmedio=document.getElementById('divdelmedio')
-if(puedeTirar.innerHTML == "verdadero"){
-    const tirarAudio = new Audio('https://dl.vgmdownloads.com/soundtracks/plants-vs.-zombies-2009-gamerip-pc-ios-x360-ps3-ds-android-mobile-psvita-xbox-one-ps4-switch/yytiqdghnq/SFX%20paper.mp3')
-tirarAudio.play()
-    divdelmedio.appendChild(carta)
-    puedeTirar.innerHTML = "falso"
-    cartaTirada.innerHTML = idCarta
-}else if (idCarta == cartaTirada.innerHTML){
-    document.getElementById(lugarCarta).appendChild(carta)
-    puedeTirar.innerHTML = "verdadero"
-}
+
+function TirarCarta(idCarta, jugador,puedeTirar){
+    console.log("tirar carta error")
+    const carta = document.getElementById(idCarta)
+    let cartaTirada 
+    if(idCarta <4)
+        cartaTirada = document.getElementById('puedeTirar1')
+    else
+        cartaTirada = document.getElementById('puedeTirar2')
+        const lugarCarta = "lugarCarta_" + idCarta
+        const divdelmedio=document.getElementById('divdelmedio')
+    if(puedeTirar.innerHTML == "verdadero"){
+        const tirarAudio = new Audio('https://dl.vgmdownloads.com/soundtracks/plants-vs.-zombies-2009-gamerip-pc-ios-x360-ps3-ds-android-mobile-psvita-xbox-one-ps4-switch/yytiqdghnq/SFX%20paper.mp3')
+        tirarAudio.play()
+        divdelmedio.appendChild(carta)
+        puedeTirar.innerHTML = "falso"
+        cartaTirada.innerHTML = idCarta
+    }else if (idCarta == cartaTirada.innerHTML){
+        document.getElementById(lugarCarta).appendChild(carta)
+        puedeTirar.innerHTML = "verdadero"
+    }
 
  }
- const constVida = 5000
-let vida1 = 100
-let vida2 = 100
+
+
+var constVida = 5000
+var vida1 = 100
+var vida2 = 100
+
+
 function TirarDado(){
+    console.log("tirar dado error")
     const rnd1 = Math.floor(Math.random() * 5);
     const rnd2 = Math.floor(Math.random() * 5);
     console.log(rnd1 + "DADO 1 RESULTADO DADO")
@@ -97,8 +104,8 @@ if(id <3) mucara.src = canciones[id+1]
 else mucara.src = canciones[0]
 }
 
-function RecargarCarta(){
-
+ function RecargarCarta(){
+//esto esta a medio hacer
     $.ajax(
         {
             type: 'GET',
@@ -110,7 +117,7 @@ function RecargarCarta(){
             {
                 const carta1ID = document.getElementById("cartaTirada1").innerHTML
                 const carta2ID = document.getElementById("cartaTirada2").innerHTML
-                const 
+               
                document.getElementById("lugarCarta_" + carta1ID).appendChild(document.getElementById(carta1ID))
                document.getElementById("lugarCarta_" + carta2ID).appendChild(document.getElementById(carta2ID))
                 document.getElementById("puedeTirar1").innerHTML = "verdadero"
@@ -120,4 +127,4 @@ function RecargarCarta(){
             }
         }
     )
-}
+} 
