@@ -52,5 +52,9 @@ public class HomeController : Controller
         return cartaResultado;
     }
 
-
+    public IActionResult GameOver(int jug){
+        
+        ViewBag.Ganador="Jugador " + jug;
+        return View();
+    }
 }

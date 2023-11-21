@@ -8,9 +8,9 @@
  
   <div id="cartasjugador1">
     @while(i<ViewBag.Cartas1.Count){
-
+<div id='lugarCarta_@i'>
       <div id ="@i">
-        <div id='lugarCarta_@i'>
+        
                                                  
         <button onclick='TirarCarta(@i, "cartas1", puedeTirar1)'> 
           <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="@i">
@@ -36,9 +36,9 @@
   @{int j = 0;}
   <div id="cartasjugador2">
     @while(j<ViewBag.Cartas2.Count){
-
+<div id='lugarCarta_@i'>
       <div id = "@i">
-        <div id='lugarCarta_@i'>
+        
 
           <button onclick='TirarCarta(@i, "cartas2", puedeTirar2)'>
             <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="@i">

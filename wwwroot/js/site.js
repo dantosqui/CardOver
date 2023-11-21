@@ -18,13 +18,16 @@ function TirarCarta(idCarta, jugador,puedeTirar){
         puedeTirar.innerHTML = "falso"
         cartaTirada.innerHTML = idCarta
     }else if (idCarta == cartaTirada.innerHTML){
+        
         document.getElementById(lugarCarta).appendChild(carta)
         puedeTirar.innerHTML = "verdadero"
     }
 
+
+
  }
 
-
+//Constantes de vida
 var constVida = 5000
 var vida1 = 100
 var vida2 = 100
@@ -73,16 +76,32 @@ function TirarDado(){
     console.log(danioRecibeTotal1)
     console.log(vida1)
 
-    /*NO ME SALE LO TERMINO DESPUES */
+    /*NO ME SALE LO TERMINO DESPUES */ //salio o no?? parece que anda -dante
+
+    //That's what
+    //-she
     $("#progressBar1").css({"width": vida1 + "%"});  
     $("#progressBar2").css({"width": vida2 + "%"});  
     document.getElementById("progressBar1").style.width = vida1
     console.log(document.getElementById("progressBar1"))
+
+    const perdiojug1=vida1<=0
+    const perdiojug2=vida2<=0
+    console.log("pj1: "+perdiojug1+" pj2: "+perdiojug2)
+    if(perdiojug1 && perdiojug2){
+        GameOver(0)
+    }
+    else if (perdiojug1){
+        GameOver(1)
+    }
+    else if (perdiojug2){
+        GameOver(2)
+    }
+    else{
+    RecargarCarta()
+    }
 }
 
-// function Duelo(idCartaJug1, idCartaJug2){
-
-// }
 
 
 function ReiniciarPartida(){
@@ -91,7 +110,10 @@ function ReiniciarPartida(){
     location.reload()
     
 }
+function ObtenerLugarCarta(){
 
+}
+//constante de lista de canciones
 const canciones = [
     "https://vgmsite.com/soundtracks/plants-vs.-zombies/vvvsnwaufk/06.%20Moongrains.mp3",
     "https://vgmsite.com/soundtracks/plants-vs.-zombies/behsmtlvrz/05.%20Loonboon.mp3",
@@ -106,6 +128,7 @@ else mucara.src = canciones[0]
 
  function RecargarCarta(){
 //esto esta a medio hacer
+console.log("aaaa")
     $.ajax(
         {
             type: 'GET',
@@ -117,14 +140,66 @@ else mucara.src = canciones[0]
             {
                 const carta1ID = document.getElementById("cartaTirada1").innerHTML
                 const carta2ID = document.getElementById("cartaTirada2").innerHTML
+               const carta1 = document.getElementById(carta1ID)
+               const carta2 = document.getElementById(carta2ID)
+               const lugarCarta1 = "lugarCarta_" + carta1ID
+               const lugarCarta2 = "lugarCarta_" + carta2ID
                
-               document.getElementById("lugarCarta_" + carta1ID).appendChild(document.getElementById(carta1ID))
-               document.getElementById("lugarCarta_" + carta2ID).appendChild(document.getElementById(carta2ID))
+               document.getElementById(lugarCarta1).appendChild(carta1)
+              
+               document.getElementById(lugarCarta2).appendChild(carta2)
+              
                 document.getElementById("puedeTirar1").innerHTML = "verdadero"
                 document.getElementById("puedeTirar2").innerHTML = "verdadero"
                 
+                $("#cartaNombre_" + carta1ID).html(carta1.nombre)
+                $("#cartaNombre_" + carta2ID).html(carta2.nombre)
+                $("puntosAtaque_" + carta1ID).html(carta1.puntosAtaque)
+                $("puntosAtaque_" + carta2ID).html(carta2.puntosAtaque)
+                $("puntosDefensa_" + carta1ID).html(carta1.puntosDefensa)
+                $("puntosDefensa_" + carta2ID).html(carta2.puntosDefensa)
 
             }
         }
     )
 } 
+
+//el nombre "gameOver hace referencia a CardOver: el juego de cartas por HalfOver, la mitad de HangOver"
+//bien pensado woody :v V:p
+function GameOver(jug){
+    if (jug!=0){
+        $.ajax(
+            {
+                
+                type: 'GET',
+                dataType: 'JSON',
+                url: '/Home/GameOver',
+                data: {jug},
+                
+            }
+        )    
+    }
+
+
+}
+
+
+
+//bre
+//bre
+// ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠿⠿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ jesse estoy en cardover
+// ⣿⣿⣿⣿⣿⣿⣿⣿⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠉⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+// ⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢺⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+// ⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠆⠜⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+// ⣿⣿⣿⣿⠿⠿⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠻⣿⣿⣿⣿⣿
+// ⣿⣿⡏⠁⠀⠀⠀⠀⠀⣀⣠⣤⣤⣶⣶⣶⣶⣶⣦⣤⡄⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿
+// ⣿⣿⣷⣄⠀⠀⠀⢠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⡧⠇⢀⣤⣶⣿⣿⣿⣿⣿⣿⣿
+// ⣿⣿⣿⣿⣿⣿⣾⣮⣭⣿⡻⣽⣒⠀⣤⣜⣭⠐⢐⣒⠢⢰⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿
+// ⣿⣿⣿⣿⣿⣿⣿⣏⣿⣿⣿⣿⣿⣿⡟⣾⣿⠂⢈⢿⣷⣞⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿
+// ⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣷⣶⣾⡿⠿⣿⠗⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+// ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠻⠋⠉⠑⠀⠀⢘⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+// ⣿⣿⣿⣿⣿⣿⣿⡿⠟⢹⣿⣿⡇⢀⣶⣶⠴⠶⠀⠀⢽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+// ⣿⣿⣿⣿⣿⣿⡿⠀⠀⢸⣿⣿⠀⠀⠣⠀⠀⠀⠀⠀⡟⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+// ⣿⣿⣿⡿⠟⠋⠀⠀⠀⠀⠹⣿⣧⣀⠀⠀⠀⠀⡀⣴⠁⢘⡙⢿⣿⣿⣿⣿⣿⣿⣿⣿
+// ⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢿⠗⠂⠄⠀⣴⡟⠀⠀⡃⠀⠉⠉⠟⡿⣿⣿⣿⣿
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢷⠾⠛⠂⢹⠀⠀⠀⢡⠀⠀⠀⠀⠀⠙⠛⠿⢿
