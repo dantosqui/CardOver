@@ -29,3 +29,12 @@ footer {
   display: flex;
   justify-content: space-between;
 }
+
+.card-text defenza{
+  color: blue;
+}
+
+.card-text ataque{
+  color: red;
+}
+

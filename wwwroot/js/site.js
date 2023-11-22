@@ -1,17 +1,47 @@
 ﻿var cartaTirada=false;
+var constVida = 5000
+var vida1 = 100
+var vida2 = 100
+function NoLocalStorage(){
+    localStorage.setItem("vida1",100)
+    localStorage.setItem("vida2",100)
+    LocalStorage()
+    console.log(localStorage.getItem("vida1"))
+}
+function LocalStorage(){
 
+vida1 = localStorage.getItem("vida1")
+vida2 = localStorage.getItem("vida2")
 
+const perdiojug1=vida1<=0
+    const perdiojug2=vida2<=0
+    if(perdiojug1 && perdiojug2){
+        GameOver(0)
+    }
+    else if (perdiojug1){
+        GameOver(1)
+    }
+    else if (perdiojug2){
+        GameOver(2)
+    }
+SetearVida()
+}
+function SetearVida(){
+    $("#progressBar1").css({"width": vida1 + "%"});  
+    $("#progressBar2").css({"width": vida2 + "%"});  
+}
 function TirarCarta(idCarta, jugador,puedeTirar){
     console.log("tirar carta error")
     const carta = document.getElementById(idCarta)
     let cartaTirada 
+
     if(idCarta <4)
-        cartaTirada = document.getElementById('puedeTirar1')
+        cartaTirada = document.getElementById('cartaTirada1')
     else
-        cartaTirada = document.getElementById('puedeTirar2')
+        cartaTirada = document.getElementById('cartaTirada2')
         const lugarCarta = "lugarCarta_" + idCarta
         const divdelmedio=document.getElementById('divdelmedio')
-    if(puedeTirar.innerHTML == "verdadero"){
+    if(puedeTirar.innerHTML == "verdadero" && vida1!=0 && vida2!=0){
         const tirarAudio = new Audio('https://dl.vgmdownloads.com/soundtracks/plants-vs.-zombies-2009-gamerip-pc-ios-x360-ps3-ds-android-mobile-psvita-xbox-one-ps4-switch/yytiqdghnq/SFX%20paper.mp3')
         tirarAudio.play()
         divdelmedio.appendChild(carta)
@@ -28,9 +58,7 @@ function TirarCarta(idCarta, jugador,puedeTirar){
  }
 
 //Constantes de vida
-var constVida = 5000
-var vida1 = 100
-var vida2 = 100
+
 
 
 function TirarDado(){
@@ -80,8 +108,9 @@ function TirarDado(){
 
     //That's what
     //-she
-    $("#progressBar1").css({"width": vida1 + "%"});  
-    $("#progressBar2").css({"width": vida2 + "%"});  
+    SetearVida()
+    window.localStorage.setItem("vida1",vida1)
+    window.localStorage.setItem("vida2",vida2)
     document.getElementById("progressBar1").style.width = vida1
     console.log(document.getElementById("progressBar1"))
 
@@ -139,25 +168,49 @@ console.log("aaaa")
             function (response)
             {
                 const carta1ID = document.getElementById("cartaTirada1").innerHTML
-                const carta2ID = document.getElementById("cartaTirada2").innerHTML
                const carta1 = document.getElementById(carta1ID)
-               const carta2 = document.getElementById(carta2ID)
                const lugarCarta1 = "lugarCarta_" + carta1ID
-               const lugarCarta2 = "lugarCarta_" + carta2ID
                
                document.getElementById(lugarCarta1).appendChild(carta1)
               
-               document.getElementById(lugarCarta2).appendChild(carta2)
               
                 document.getElementById("puedeTirar1").innerHTML = "verdadero"
+                
+                $("#cartaNombre_" + carta1ID).html(response.nombre)
+                $("puntosAtaque_" + carta1ID).html(response.puntosAtaque)
+                $("puntosDefensa_" + carta1ID).html(response.puntosDefensa)
+
+            }
+        }
+    )
+    $.ajax(
+        {
+            type: 'GET',
+            dataType: 'JSON', 
+            url: '/Home/RecargarCarta',
+            data: {}, 
+            success: 
+            function (response)
+            {
+           
+                const carta2ID = document.getElementById("cartaTirada2").innerHTML
+              
+               const carta2 = document.getElementById(carta2ID)
+             
+               const lugarCarta2 = "lugarCarta_" + carta2ID
+               
+            
+              
+               document.getElementById(lugarCarta2).appendChild(carta2)
+              
                 document.getElementById("puedeTirar2").innerHTML = "verdadero"
                 
-                $("#cartaNombre_" + carta1ID).html(carta1.nombre)
-                $("#cartaNombre_" + carta2ID).html(carta2.nombre)
-                $("puntosAtaque_" + carta1ID).html(carta1.puntosAtaque)
-                $("puntosAtaque_" + carta2ID).html(carta2.puntosAtaque)
-                $("puntosDefensa_" + carta1ID).html(carta1.puntosDefensa)
-                $("puntosDefensa_" + carta2ID).html(carta2.puntosDefensa)
+                
+                $("#cartaNombre_" + carta2ID).html(response.nombre)
+               
+                $("puntosAtaque_" + carta2ID).html(response.puntosAtaque)
+             
+                $("puntosDefensa_" + carta2ID).html(response.puntosDefensa)
 
             }
         }
@@ -167,7 +220,7 @@ console.log("aaaa")
 //el nombre "gameOver hace referencia a CardOver: el juego de cartas por HalfOver, la mitad de HangOver"
 //bien pensado woody :v V:p
 function GameOver(jug){
-    if (jug!=0){
+  /*  if (jug!=0){
         $.ajax(
             {
                 
@@ -178,11 +231,18 @@ function GameOver(jug){
                 
             }
         )    
+    }*/ //perdon pero voy a recargar la pagina si queres que sea de otra forma decimelo y lo rehago
+const ganador = document.getElementById("ganador")
+    if(jug == 0){
+ganador.innerHTML = "Empate"
     }
+    
 
 
 }
-
+function Recargar() {
+location.reload();
+}
 
 
 //bre

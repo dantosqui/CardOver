@@ -1,7 +1,7 @@
 <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
   <div id="progressBar1" class="progress-bar" style="width: 100%; background-color: green"></div>
 </div>
-
+<body onload="LocalStorage()"></body>
  @{int ronda = 1;}
   @{int i = 0;}
 <div id="wrappercartas">
@@ -13,17 +13,31 @@
         
                                                  
         <button onclick='TirarCarta(@i, "cartas1", puedeTirar1)'> 
-          <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="@i">
-
+          <!-- <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="@i">
             <div class="card-body">
+            <img src='@Url.Content("~/wwwroot/imgs/@ViewBag.Cartas1[i].ImagenCarta")'>
               <div id='cartaNombre_@i' class="card-header">@ViewBag.Cartas1[i].nombre</div>
               <p id ='puntosAtaque_@i' class="card-text danio">@ViewBag.Cartas1[i].puntosAtaque</p>
               <h5 id='cartaNombre_@i' class="card-title">@ViewBag.Cartas1[i].nombre</h5>
               <p id='puntosDefensa_@i' class="card-text defenza">@ViewBag.Cartas1[i].puntosDefensa</p>
             </div>
+          </div> -->
 
 
-          </div>
+          <div class="card" style="width: 18rem;" id="@i">
+              <img src="..." class="card-img-top" alt="..." id='cartaImagen_@i' >
+            <div class="card-body">
+              <img src='@Url.Content("~/wwwroot/imgs/@ViewBag.Cartas2[j].ImagenCarta")'>
+              <h5 id='cartaNombre_@i' class="card-title">@ViewBag.Cartas1[i].nombre</h5>
+              <p class="card-text">@ViewBag.Cartas1[i].tipoCarta</p>
+            </div>
+            <ul class="list-group list-group-flush">
+            <li id='puntosAtaque_@i' class="list-group-item danio">@ViewBag.Cartas1[i].puntosAtaque</li>
+            <li id='puntosDefensa_@i' class="list-group-item defenza">@ViewBag.Cartas1[i].puntosDefensa</li>
+            </ul>
+            <div class="card-body">
+            </div>   
+                    
         </button>
       </div>
 
@@ -32,7 +46,21 @@
       i++;
     } 
   </div>
+<div id="skibidinodigashtoilet">
+<h1>CARD OVER!</h1>
+<h2 id="ganador"></h2>
+<button onclick="NoLocalStorage()">Volver a empezar</button>
+<button>Ir al menú</button>
+<div id="divdelmedio" style="border:1px solid black">
 
+</div>
+
+
+<button onclick="TirarDado()" type="button" class="btn btn-primary">
+  Tirar Dado
+
+</button>
+</div>
   @{int j = 0;}
   <div id="cartasjugador2">
     @while(j<ViewBag.Cartas2.Count){
@@ -41,16 +69,35 @@
         
 
           <button onclick='TirarCarta(@i, "cartas2", puedeTirar2)'>
-            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="@i">
+            <!-- <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="@i">
 
               <div class="card-body">
                 <div id='cartaNombre_@i' class="card-header">@ViewBag.Cartas2[j].nombre</div>
+                
                 <p id='puntosAtaque_@i' class="card-text danio">@ViewBag.Cartas2[j].puntosAtaque</p>
                 <h5 id='cartaNombre_@i' class="card-title">@ViewBag.Cartas2[j].nombre</h5>
               </div>
                 <p id='puntosDefensa_@i' class="card-text defenza">@ViewBag.Cartas2[j].puntosDefensa</p>
+            </div> -->
 
+            <div class="card" style="width: 18rem;" id="@i">
+              <img src="wwwroot/imgs/" + "@ViewBag.Cartas2[j].ImagenCarta" class="card-img-top" alt="..." id='cartaImagen_@i'> <!--Agregar el Url.Content en vez del img src-->
+            <div class="card-body">
+              <h5 id='cartaNombre_@i' class="card-title">@ViewBag.Cartas2[j].nombre</h5>
+              <p class="card-text">@ViewBag.Cartas2[j].tipoCarta</p>
             </div>
+            <ul class="list-group list-group-flush">
+            <li id='puntosAtaque_@i' class="list-group-item danio">@ViewBag.Cartas2[j].puntosAtaque</li>
+            <li id='puntosDefensa_@i' class="list-group-item defenza">@ViewBag.Cartas2[j].puntosDefensa</li>
+            </ul>
+            <div class="card-body">
+            </div>
+</div>
+
+
+
+
+
           </button>
         </div>
 
@@ -68,15 +115,7 @@
   <div id="progressBar2" class="progress-bar" style="width: 100%; background-color: green"></div>
 </div>
 
-<div id="divdelmedio" style="border:1px solid black">
 
-</div>
-
-
-<button onclick="TirarDado()" type="button" class="btn btn-primary">
-  Tirar Dado
-
-</button>
 
 <div class="modal fade" id="idModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
