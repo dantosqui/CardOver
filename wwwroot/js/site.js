@@ -220,23 +220,10 @@ console.log("aaaa")
 //el nombre "gameOver hace referencia a CardOver: el juego de cartas por HalfOver, la mitad de HangOver"
 //bien pensado woody :v V:p
 function GameOver(jug){
-  /*  if (jug!=0){
-        $.ajax(
-            {
-                
-                type: 'GET',
-                dataType: 'JSON',
-                url: '/Home/GameOver',
-                data: {jug},
-                
-            }
-        )    
-    }*/ //perdon pero voy a recargar la pagina si queres que sea de otra forma decimelo y lo rehago
-const ganador = document.getElementById("ganador")
-    if(jug == 0){
-ganador.innerHTML = "Empate"
+    console.log("gameover corrido")
+    if (jug!=0){
+       window.location.assign("GameOver/jug?=1")    
     }
-    
 
 
 }
