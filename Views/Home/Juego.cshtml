@@ -27,9 +27,10 @@
           <div class="card" style="width: 18rem;" id="@i">
               <img src="..." class="card-img-top" alt="..." id='cartaImagen_@i' >
             <div class="card-body">
-              <img src='@Url.Content("~/wwwroot/imgs/@ViewBag.Cartas2[j].ImagenCarta")'>
+              <img src="@Url.Content("~/wwwroot/imgs/@ViewBag.Cartas2[i].ImagenCarta")">
               <h5 id='cartaNombre_@i' class="card-title">@ViewBag.Cartas1[i].nombre</h5>
               <p class="card-text">@ViewBag.Cartas1[i].tipoCarta</p>
+              
             </div>
             <ul class="list-group list-group-flush">
             <li id='puntosAtaque_@i' class="list-group-item danio">@ViewBag.Cartas1[i].puntosAtaque</li>
@@ -69,22 +70,13 @@
         
 
           <button onclick='TirarCarta(@i, "cartas2", puedeTirar2)'>
-            <!-- <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="@i">
-
-              <div class="card-body">
-                <div id='cartaNombre_@i' class="card-header">@ViewBag.Cartas2[j].nombre</div>
-                
-                <p id='puntosAtaque_@i' class="card-text danio">@ViewBag.Cartas2[j].puntosAtaque</p>
-                <h5 id='cartaNombre_@i' class="card-title">@ViewBag.Cartas2[j].nombre</h5>
-              </div>
-                <p id='puntosDefensa_@i' class="card-text defenza">@ViewBag.Cartas2[j].puntosDefensa</p>
-            </div> -->
 
             <div class="card" style="width: 18rem;" id="@i">
-              <img src="wwwroot/imgs/" + "@ViewBag.Cartas2[j].ImagenCarta" class="card-img-top" alt="..." id='cartaImagen_@i'> <!--Agregar el Url.Content en vez del img src-->
+            <img src="@Url.Content("~/wwwroot/imgs/@ViewBag.Cartas2[j].ImagenCarta")">
             <div class="card-body">
               <h5 id='cartaNombre_@i' class="card-title">@ViewBag.Cartas2[j].nombre</h5>
               <p class="card-text">@ViewBag.Cartas2[j].tipoCarta</p>
+              @* <p class="card-text">@ViewBag.Cartas2[j].ImagenCarta</p> *@
             </div>
             <ul class="list-group list-group-flush">
             <li id='puntosAtaque_@i' class="list-group-item danio">@ViewBag.Cartas2[j].puntosAtaque</li>

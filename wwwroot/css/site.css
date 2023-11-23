@@ -30,11 +30,13 @@ footer {
   justify-content: space-between;
 }
 
-.card-text defenza{
-  color: blue;
+
+
+.card-text{ /*no anda*/
+  color: red;
 }
 
-.card-text ataque{
-  color: red;
+.card{
+color: #9B9764;
 }
 
