@@ -50,8 +50,11 @@
 <div id="skibidinodigashtoilet">
 <h1>CARD OVER!</h1>
 <h2 id="ganador"></h2>
+@* esto tambien deberia recargar las cartas idea *@
 <button onclick="NoLocalStorage()">Volver a empezar</button>
 <button>Ir al menú</button>
+
+
 <div id="divdelmedio" style="border:1px solid black">
 
 </div>
@@ -72,7 +75,7 @@
           <button onclick='TirarCarta(@i, "cartas2", puedeTirar2)'>
 
             <div class="card" style="width: 18rem;" id="@i">
-            <img src="@Url.Content("~/wwwroot/imgs/@ViewBag.Cartas2[j].ImagenCarta")">
+            <img src='@Url.Content("~/wwwroot/imgs/@ViewBag.Cartas2[j].ImagenCarta")'>
             <div class="card-body">
               <h5 id='cartaNombre_@i' class="card-title">@ViewBag.Cartas2[j].nombre</h5>
               <p class="card-text">@ViewBag.Cartas2[j].tipoCarta</p>
@@ -133,6 +136,28 @@
     </div>
   </div>
 </div>
+
+
+<div class="modal fade" id="idModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal2titulo">MUERTE SUBITA</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body listaPeronista">
+        Muerte subita! En el proximo turno, quien haga mas daño en total ganara la partida!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 <div class="modal fade" id="divTodasLasCartas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

@@ -2,6 +2,7 @@
 var constVida = 5000
 var vida1 = 100
 var vida2 = 100
+var ismuertesubita=false;
 function NoLocalStorage(){
     localStorage.setItem("vida1",100)
     localStorage.setItem("vida2",100)
@@ -16,13 +17,15 @@ vida2 = localStorage.getItem("vida2")
 const perdiojug1=vida1<=0
     const perdiojug2=vida2<=0
     if(perdiojug1 && perdiojug2){
-        GameOver(0)
+        $('#idModal1').modal('show')
+    
+        ismuertesubita=true
     }
     else if (perdiojug1){
-        GameOver(1)
+        GameOver(2)
     }
     else if (perdiojug2){
-        GameOver(2)
+        GameOver(1)
     }
 SetearVida()
 }
@@ -57,9 +60,6 @@ function TirarCarta(idCarta, jugador,puedeTirar){
 
  }
 
-//Constantes de vida
-
-
 
 function TirarDado(){
     console.log("tirar dado error")
@@ -79,6 +79,7 @@ function TirarDado(){
     const defensa2 = rnd2*carta2.querySelectorAll(".defenza")[0].innerHTML
     let danioRecibeTotal1
     let danioRecibeTotal2
+    
     if(danio2-defensa1>=0)
     danioRecibeTotal1 = danio2-defensa1
     else
@@ -90,44 +91,64 @@ function TirarDado(){
     else
     danioRecibeTotal2 = 0
 
-    vida1 -= (danioRecibeTotal1/constVida)*100
-    vida2 -= (danioRecibeTotal2/constVida)*100
-        
-    document.getElementById("daño1").innerHTML="daño 1:" + danio1;
-    document.getElementById("daño2").innerHTML="daño 2:"+ danio2;
-    document.getElementById("defensa1").innerHTML="defensa 1:"+ defensa1;
-    document.getElementById("defensa2").innerHTML="defensa 2:" + defensa2;
-    document.getElementById("num2").innerHTML="dado 2:"+ rnd2;
-    document.getElementById("num1").innerHTML="dado 1:"+ rnd1;
-    $('#idModal').modal('show')
+    if (!ismuertesubita)
+    {
+        vida1 -= (danioRecibeTotal1/constVida)*100
+        vida2 -= (danioRecibeTotal2/constVida)*100
 
-    console.log(danioRecibeTotal1)
-    console.log(vida1)
+        document.getElementById("daño1").innerHTML="daño 1:" + danio1;
+        document.getElementById("daño2").innerHTML="daño 2:"+ danio2;
+        document.getElementById("defensa1").innerHTML="defensa 1:"+ defensa1;
+        document.getElementById("defensa2").innerHTML="defensa 2:" + defensa2;
+        document.getElementById("num2").innerHTML="dado 2:"+ rnd2;
+        document.getElementById("num1").innerHTML="dado 1:"+ rnd1;
+        $('#idModal').modal('show')
 
-    /*NO ME SALE LO TERMINO DESPUES */ //salio o no?? parece que anda -dante
+        console.log(danioRecibeTotal1)
+        console.log(vida1)
 
-    //That's what
-    //-she
-    SetearVida()
-    window.localStorage.setItem("vida1",vida1)
-    window.localStorage.setItem("vida2",vida2)
-    document.getElementById("progressBar1").style.width = vida1
-    console.log(document.getElementById("progressBar1"))
+        /*NO ME SALE LO TERMINO DESPUES */ //salio o no?? parece que anda -dante
 
-    const perdiojug1=vida1<=0
-    const perdiojug2=vida2<=0
-    console.log("pj1: "+perdiojug1+" pj2: "+perdiojug2)
-    if(perdiojug1 && perdiojug2){
-        GameOver(0)
+        //That's what
+        //-she
+        SetearVida()
+        window.localStorage.setItem("vida1",vida1)
+        window.localStorage.setItem("vida2",vida2)
+        document.getElementById("progressBar1").style.width = vida1
+        console.log(document.getElementById("progressBar1"))
+
+        const perdiojug1=vida1<=0
+        const perdiojug2=vida2<=0
+    
+  
+
+
+    if(perdiojug1 && perdiojug2){       
+    
+        $('#idModal1').modal('show')
+    
+        ismuertesubita=true
     }
+    
     else if (perdiojug1){
-        GameOver(1)
+        GameOver(2)
     }
     else if (perdiojug2){
-        GameOver(2)
+        GameOver(1)
     }
     else{
     RecargarCarta()
+    }
+
+
+    }
+    else{
+
+        if (danioRecibeTotal1>danioRecibeTotal2)
+            GameOver(2)
+        else
+            GameOver(1)
+        
     }
 }
 
@@ -167,7 +188,7 @@ console.log("aaaa")
             success: 
             function (response)
             {
-                const carta1ID = document.getElementById("cartaTirada1").innerHTML
+               const carta1ID = document.getElementById("cartaTirada1").innerHTML
                const carta1 = document.getElementById(carta1ID)
                const lugarCarta1 = "lugarCarta_" + carta1ID
                
@@ -221,12 +242,20 @@ console.log("aaaa")
 //bien pensado woody :v V:p
 function GameOver(jug){
     console.log("gameover corrido")
-    if (jug!=0){
-       window.location.assign("GameOver/jug?=1")    
-    }
+
+    window.location.assign("GameOver?jug="+jug)
+    NoLocalStorage()
+    
 
 
 }
+
+
+
+
+
+
+
 function Recargar() {
 location.reload();
 }
