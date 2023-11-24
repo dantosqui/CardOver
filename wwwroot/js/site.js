@@ -11,23 +11,23 @@ function NoLocalStorage(){
 }
 function LocalStorage(){
 
-vida1 = localStorage.getItem("vida1")
-vida2 = localStorage.getItem("vida2")
-
-const perdiojug1=vida1<=0
-    const perdiojug2=vida2<=0
-    if(perdiojug1 && perdiojug2){
-        $('#idModal1').modal('show')
+    vida1 = localStorage.getItem("vida1")
+    vida2 = localStorage.getItem("vida2")
     
-        ismuertesubita=true
-    }
-    else if (perdiojug1){
-        GameOver(2)
-    }
-    else if (perdiojug2){
-        GameOver(1)
-    }
-SetearVida()
+    const perdiojug1=vida1<=0
+        const perdiojug2=vida2<=0
+        if(perdiojug1 && perdiojug2){
+            $('#idModal1').modal('show')
+        
+            ismuertesubita=true
+        } 
+        else if (perdiojug1){
+            GameOver(2)
+        }
+        else if (perdiojug2){
+            GameOver(1)
+        }
+    SetearVida()
 }
 function SetearVida(){
     $("#progressBar1").css({"width": vida1 + "%"});  
@@ -96,16 +96,17 @@ function TirarDado(){
         vida1 -= (danioRecibeTotal1/constVida)*100
         vida2 -= (danioRecibeTotal2/constVida)*100
 
-        document.getElementById("daño1").innerHTML="daño 1:" + danio1;
-        document.getElementById("daño2").innerHTML="daño 2:"+ danio2;
-        document.getElementById("defensa1").innerHTML="defensa 1:"+ defensa1;
-        document.getElementById("defensa2").innerHTML="defensa 2:" + defensa2;
-        document.getElementById("num2").innerHTML="dado 2:"+ rnd2;
-        document.getElementById("num1").innerHTML="dado 1:"+ rnd1;
-        $('#idModal').modal('show')
+        document.getElementById("spannum1").innerHTML=rnd1
+        document.getElementById("spannum2").innerHTML=rnd2
+        document.getElementById("spandanio1").innerHTML=danio1
+        document.getElementById("spandanio2").innerHTML=danio2
+        document.getElementById("spandefensa1").innerHTML=defensa1
+        document.getElementById("spandefensa2").innerHTML=defensa2
 
-        console.log(danioRecibeTotal1)
-        console.log(vida1)
+        document.getElementById("dañototal1").innerHTML=-danioRecibeTotal1
+        document.getElementById("dañototal2").innerHTML=-danioRecibeTotal2   
+
+
 
         /*NO ME SALE LO TERMINO DESPUES */ //salio o no?? parece que anda -dante
 

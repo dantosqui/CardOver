@@ -1,6 +1,9 @@
 <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
   <div id="progressBar1" class="progress-bar" style="width: 100%; background-color: green"></div>
 </div>
+
+<p id="dañorecjug1"></p> <p id="dañorecjug2"></p>
+
 <body onload="LocalStorage()"></body>
  @{int ronda = 1;}
   @{int i = 0;}
@@ -47,24 +50,47 @@
       i++;
     } 
   </div>
+
+@* añadir imagen de espadita y escudito a ambos dados*@
+<span id="dañototal1"></span>
+  <div id="dado1" class="dado">
+    <span class="spannum" id="spannum1"></span>
+    <br>
+    <div><span class="spandanio" id="spandanio1"></span></div>
+    <br>
+    <div><span class="spandefensa" id="spandefensa1"></span></div>
+  </div>
+
+
+
 <div id="skibidinodigashtoilet">
-<h1>CARD OVER!</h1>
-<h2 id="ganador"></h2>
-@* esto tambien deberia recargar las cartas idea *@
-<button onclick="NoLocalStorage()">Volver a empezar</button>
-<button>Ir al menú</button>
-
-
-<div id="divdelmedio" style="border:1px solid black">
-
+  <h1>CARD OVER!</h1>
+  <h2 id="ganador"></h2>
+  @* esto tambien deberia recargar las cartas idea *@
+  <button onclick="NoLocalStorage()">Volver a empezar</button>
+  <button>Ir al menú</button>
+  
+  
+  <div id="divdelmedio" style="border:1px solid black">
+  
+  </div>
+  
+  
+  <button onclick="TirarDado()" type="button" class="btn btn-primary">
+    Tirar Dado
+  
+  </button>
 </div>
 
+  <div id="dado2" class="dado">
+    <span class="spannum" id="spannum2"></span>
+    <br>
+    <span class="spandanio" id="spandanio2"></span>
+    <br>
+    <span class="spandefensa" id="spandefensa2"></span>
+  </div>
 
-<button onclick="TirarDado()" type="button" class="btn btn-primary">
-  Tirar Dado
-
-</button>
-</div>
+<span id="dañototal2"></span>
   @{int j = 0;}
   <div id="cartasjugador2">
     @while(j<ViewBag.Cartas2.Count){

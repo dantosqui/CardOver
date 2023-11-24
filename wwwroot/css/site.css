@@ -40,3 +40,8 @@ footer {
 color: #9B9764;
 }
 
+.dado{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
