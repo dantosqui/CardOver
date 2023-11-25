@@ -1,6 +1,6 @@
 ﻿select * from cartas
 select * from CartasEspeciales
-UPDATE cartas SET ImagenCarta = 'https://w7.pngwing.com/pngs/365/30/png-transparent-cute-dragon-kawaii-dragon-anime-dragon.png' WHERE idCarta = 2
+UPDATE cartas SET ImagenCarta = 'https://w7.pngwing.com/pngs/365/30/png-transparent-cute-dragon-kawaii-dragon-anime-dragon.png' WHERE nombre = 'Dragoncin Normal'
 
 insert into cartas (nombre, puntosAtaque, puntosDefensa, ImagenCarta, tipoCarta) values ('Hombre Semilla', 100, 20, 'https://ibb.co/ZKKF4Gm', 'semillas')
 
@@ -15,3 +15,6 @@ insert into cartas (nombre, puntosAtaque, puntosDefensa, ImagenCarta, tipoCarta)
 insert into cartas (nombre, puntosAtaque, puntosDefensa, ImagenCarta, tipoCarta) values ('Media', 4000, 0, 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3VlZm0weWZlcWJkMGplcTZkdG9mdjIyOWNsNDRrbzZzYXlucHR1MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8eXjgbHDQjUkXamPEP/giphy.gif', '"Arrodíllate"')
 
 insert into cartas (nombre, puntosAtaque, puntosDefensa, ImagenCarta, tipoCarta) values ('Panda chino', 20, 10, 'https://i.pinimg.com/564x/7f/91/13/7f91130c354535ec0df1d4c7013a6ca3.jpg', '我是一只熊猫')
+
+insert into cartas (nombre, puntosAtaque, puntosDefensa, ImagenCarta, tipoCarta) values ('Dantosqui', 2, 5, 'https://i.pinimg.com/564x/7f/91/13/7f91130c354535ec0df1d4c7013a6ca3.jpg', 'no hay foto')
+
