@@ -32,16 +32,47 @@ footer {
 
 
 
-.card-text{ /*no anda*/
-  color: red;
+.card .card-body .card-text {
+  color: #517165;
+  font-weight: bold;
+  font-size: 20px;
+  
 }
 
-.card{
-color: #9B9764;
+.list-group-item.danio {
+  color: #a81737;
+  background-color: #D1C59F;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.list-group-item.defenza {
+  color: #004369;
+  background-color: #D1C59F;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+
+
+div.card {
+  background-color: #D1C59F;
+  border: 3.5px solid #281C2D;
+  
+}
+
+div.separacionCarta{
+  margin-bottom: 25px;
 }
 
 .dado{
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.Boton {
+  background-color: #281C2D;
+  outline: none;
+  border: none;
 }

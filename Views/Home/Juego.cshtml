@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tu juego</title>
+  <style>
+    body {
+      background-color: #281C2D;
+      color: white; 
+    }
+  </style>
+</head>
 <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
   <div id="progressBar1" class="progress-bar" style="width: 100%; background-color: green"></div>
 </div>
@@ -5,32 +16,21 @@
 <p id="dañorecjug1"></p> <p id="dañorecjug2"></p>
 
 <body onload="LocalStorage()"></body>
- @{int ronda = 1;}
   @{int i = 0;}
 <div id="wrappercartas">
  
   <div id="cartasjugador1">
     @while(i<ViewBag.Cartas1.Count){
-<div id='lugarCarta_@i'>
+<div class="separacionCarta" id='lugarCarta_@i'>
       <div id ="@i">
         
                                                  
-        <button onclick='TirarCarta(@i, "cartas1", puedeTirar1)'> 
-          <!-- <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" id="@i">
-            <div class="card-body">
-            <img src='@Url.Content("~/wwwroot/imgs/@ViewBag.Cartas1[i].ImagenCarta")'>
-              <div id='cartaNombre_@i' class="card-header">@ViewBag.Cartas1[i].nombre</div>
-              <p id ='puntosAtaque_@i' class="card-text danio">@ViewBag.Cartas1[i].puntosAtaque</p>
-              <h5 id='cartaNombre_@i' class="card-title">@ViewBag.Cartas1[i].nombre</h5>
-              <p id='puntosDefensa_@i' class="card-text defenza">@ViewBag.Cartas1[i].puntosDefensa</p>
-            </div>
-          </div> -->
-
+        <button onclick='TirarCarta(@i, "cartas1", puedeTirar1)' class="Boton"> 
 
           <div class="card" style="width: 18rem;" id="@i">
-              <img src="..." class="card-img-top" alt="..." id='cartaImagen_@i' >
             <div class="card-body">
-              <img src="@Url.Content("~/wwwroot/imgs/@ViewBag.Cartas2[i].ImagenCarta")">
+               <img src="@ViewBag.Cartas1[i].ImagenCarta" class="card-img-top" alt="..." id='cartaImagen_@i' />
+               
               <h5 id='cartaNombre_@i' class="card-title">@ViewBag.Cartas1[i].nombre</h5>
               <p class="card-text">@ViewBag.Cartas1[i].tipoCarta</p>
               
@@ -94,15 +94,18 @@
   @{int j = 0;}
   <div id="cartasjugador2">
     @while(j<ViewBag.Cartas2.Count){
-<div id='lugarCarta_@i'>
+<div class="separacionCarta" id='lugarCarta_@i'>
       <div id = "@i">
         
 
-          <button onclick='TirarCarta(@i, "cartas2", puedeTirar2)'>
+          <button onclick='TirarCarta(@i, "cartas2", puedeTirar2)' class="Boton">
 
             <div class="card" style="width: 18rem;" id="@i">
-            <img src='@Url.Content("~/wwwroot/imgs/@ViewBag.Cartas2[j].ImagenCarta")'>
             <div class="card-body">
+              <img src="@ViewBag.Cartas2[j].ImagenCarta" class="card-img-top" alt="..." id='cartaImagen_@i' />
+              
+
+
               <h5 id='cartaNombre_@i' class="card-title">@ViewBag.Cartas2[j].nombre</h5>
               <p class="card-text">@ViewBag.Cartas2[j].tipoCarta</p>
               @* <p class="card-text">@ViewBag.Cartas2[j].ImagenCarta</p> *@
