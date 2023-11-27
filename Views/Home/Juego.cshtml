@@ -15,7 +15,7 @@
 
 <p id="dañorecjug1"></p> <p id="dañorecjug2"></p>
 
-      <body onload="Empezar('@ViewBag.Cartas','@ViewBag.Cartas2')"></body>
+      <body onload="Empezar()"></body>
   @{int i = 0;}
 <div id="wrappercartas">
  
@@ -70,6 +70,9 @@
   @* esto tambien deberia recargar las cartas idea *@
   <button onclick="VolverAEmpezar()">Volver a empezar</button>
   <button onclick="location.href='@Url.Action("Index", "Home")'">Ir al menú</button>
+  <a href='https://twitch.com'>
+    <button>twitch</button>
+</a>
   </div>
   
   

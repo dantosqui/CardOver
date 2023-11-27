@@ -274,13 +274,11 @@ location.reload();
 }
 function Empezar(uno,dos){
     LocalStorage()
-    console.log(uno)
-    GuardarCartasStorage(uno,dos)
 }
-
+/*
 function GuardarCartasStorage(uno,dos){
 
-}
+}*/
 
 
 //bre
