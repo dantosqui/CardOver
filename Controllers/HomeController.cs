@@ -30,6 +30,7 @@ public class HomeController : Controller
         
         ViewBag.Cartas1=CartasJug1;
         ViewBag.Cartas2=CartasJug2;
+        
       
         return View("Juego");
     }
@@ -48,12 +49,10 @@ public class HomeController : Controller
 
         Cartas cartaResultado = new Cartas();
         cartaResultado = listaCartasa[r];
-        Console.WriteLine("Carta resultado: " + cartaResultado);
         return cartaResultado;
     }
 
     public IActionResult GameOver(int jug){
-        
         ViewBag.Ganador="Jugador " + jug;
         return View();
     }

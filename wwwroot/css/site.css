@@ -4,6 +4,17 @@ html {
   min-height: 100%;
 }
 
+div.titulo{
+  color: #a81737;
+  margin: 20px 60px 0px 20px;
+}
+
+div.enlaces{
+  font-size: 14px;
+  position: relative;
+  margin: 20px 60px 0px 20px;
+}
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;

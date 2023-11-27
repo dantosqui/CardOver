@@ -15,12 +15,13 @@
 
 <p id="dañorecjug1"></p> <p id="dañorecjug2"></p>
 
-<body onload="LocalStorage()"></body>
+      <body onload="Empezar('@ViewBag.Cartas','@ViewBag.Cartas2')"></body>
   @{int i = 0;}
 <div id="wrappercartas">
  
   <div id="cartasjugador1">
     @while(i<ViewBag.Cartas1.Count){
+
 <div class="separacionCarta" id='lugarCarta_@i'>
       <div id ="@i">
         
@@ -32,7 +33,7 @@
                <img src="@ViewBag.Cartas1[i].ImagenCarta" class="card-img-top" alt="..." id='cartaImagen_@i' />
                
               <h5 id='cartaNombre_@i' class="card-title">@ViewBag.Cartas1[i].nombre</h5>
-              <p class="card-text">@ViewBag.Cartas1[i].tipoCarta</p>
+              <p class="card-text" id= "tipoCarta_@i" >@ViewBag.Cartas1[i].tipoCarta</p>
               
             </div>
             <ul class="list-group list-group-flush">
@@ -40,8 +41,7 @@
             <li id='puntosDefensa_@i' class="list-group-item defenza">@ViewBag.Cartas1[i].puntosDefensa</li>
             </ul>
             <div class="card-body">
-            </div>   
-                    
+            </div>             
         </button>
       </div>
 
@@ -64,11 +64,13 @@
 
 
 <div id="skibidinodigashtoilet">
+<div id="gameover" hidden>
   <h1>CARD OVER!</h1>
   <h2 id="ganador"></h2>
   @* esto tambien deberia recargar las cartas idea *@
-  <button onclick="NoLocalStorage()">Volver a empezar</button>
-  <button>Ir al menú</button>
+  <button onclick="VolverAEmpezar()">Volver a empezar</button>
+  <button onclick="location.href='@Url.Action("Index", "Home")'">Ir al menú</button>
+  </div>
   
   
   <div id="divdelmedio" style="border:1px solid black">
@@ -107,7 +109,7 @@
 
 
               <h5 id='cartaNombre_@i' class="card-title">@ViewBag.Cartas2[j].nombre</h5>
-              <p class="card-text">@ViewBag.Cartas2[j].tipoCarta</p>
+              <p class="card-text" id= "tipoCarta_@i" >@ViewBag.Cartas2[j].tipoCarta</p>
               @* <p class="card-text">@ViewBag.Cartas2[j].ImagenCarta</p> *@
             </div>
             <ul class="list-group list-group-flush">

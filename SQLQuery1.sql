@@ -18,3 +18,6 @@ insert into cartas (nombre, puntosAtaque, puntosDefensa, ImagenCarta, tipoCarta)
 
 insert into cartas (nombre, puntosAtaque, puntosDefensa, ImagenCarta, tipoCarta) values ('Dantosqui', 2, 5, 'https://i.pinimg.com/564x/7f/91/13/7f91130c354535ec0df1d4c7013a6ca3.jpg', 'no hay foto')
 
+select ImagenCarta from cartas where nombre = 'Dantosqui'
+
+update cartas set ImagenCarta = 'https://i.ibb.co/KXdN9hm/image.jpg' where nombre = 'Dantosqui'

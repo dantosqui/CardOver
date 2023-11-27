@@ -8,6 +8,14 @@ function NoLocalStorage(){
     localStorage.setItem("vida2",100)
     LocalStorage()
     console.log(localStorage.getItem("vida1"))
+    
+  
+   
+}
+
+function VolverAEmpezar(){
+    NoLocalStorage()
+    Recargar()
 }
 function LocalStorage(){
 
@@ -155,12 +163,6 @@ function TirarDado(){
 
 
 
-function ReiniciarPartida(){
-    localStorage.empty()
-    
-    location.reload()
-    
-}
 function ObtenerLugarCarta(){
 
 }
@@ -197,11 +199,11 @@ console.log("aaaa")
               
               
                 document.getElementById("puedeTirar1").innerHTML = "verdadero"
-                
+                $("#cartaImagen_" + carta1ID).attr("src", response.ImagenCarta)
                 $("#cartaNombre_" + carta1ID).html(response.nombre)
-                $("puntosAtaque_" + carta1ID).html(response.puntosAtaque)
-                $("puntosDefensa_" + carta1ID).html(response.puntosDefensa)
-
+                $("#puntosAtaque_" + carta1ID).html(response.puntosAtaque)
+                $("#puntosDefensa_" + carta1ID).html(response.puntosDefensa)
+                $("#tipoCarta_" + carta1ID).html(response.tipoCarta)
             }
         }
     )
@@ -217,22 +219,31 @@ console.log("aaaa")
            
                 const carta2ID = document.getElementById("cartaTirada2").innerHTML
               
-               const carta2 = document.getElementById(carta2ID)
+                const carta2 = document.getElementById(carta2ID)
              
-               const lugarCarta2 = "lugarCarta_" + carta2ID
+                const lugarCarta2 = "lugarCarta_" + carta2ID
                
             
               
-               document.getElementById(lugarCarta2).appendChild(carta2)
+                document.getElementById(lugarCarta2).appendChild(carta2)
               
                 document.getElementById("puedeTirar2").innerHTML = "verdadero"
                 
+                $("#cartaImagen_" + carta2ID).attr("src", response.ImagenCarta)
                 
                 $("#cartaNombre_" + carta2ID).html(response.nombre)
                
-                $("puntosAtaque_" + carta2ID).html(response.puntosAtaque)
+                $("#puntosAtaque_" + carta2ID).html(response.puntosAtaque)
              
-                $("puntosDefensa_" + carta2ID).html(response.puntosDefensa)
+                $("#puntosDefensa_" + carta2ID).html(response.puntosDefensa)
+
+                $("#tipoCarta_" + carta2ID).html(response.tipoCarta)
+                console.log("AAAAAAAAAAAAAAAAAAA")
+                console.log(response.nombre)
+                console.log(response.ImagenCarta)
+                console.log(response.puntosAtaque)
+                console.log(response.tipoCarta)
+                console.log(response.idCarta)
 
             }
         }
@@ -244,7 +255,8 @@ console.log("aaaa")
 function GameOver(jug){
     console.log("gameover corrido")
 
-    window.location.assign("GameOver?jug="+jug)
+    document.getElementById("gameover").hidden = false;
+   // window.location.assign("GameOver?jug="+jug)
     NoLocalStorage()
     
 
@@ -259,6 +271,15 @@ function GameOver(jug){
 
 function Recargar() {
 location.reload();
+}
+function Empezar(uno,dos){
+    LocalStorage()
+    console.log(uno)
+    GuardarCartasStorage(uno,dos)
+}
+
+function GuardarCartasStorage(uno,dos){
+
 }
 
 
