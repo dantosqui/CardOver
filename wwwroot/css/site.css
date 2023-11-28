@@ -87,3 +87,28 @@ div.separacionCarta{
   outline: none;
   border: none;
 }
+
+#container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#botones{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
+.txt{
+  color: white; 
+}
+h5.txt{
+  width: 40vw;
+}
+#comojugarbody{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10vw;
+} 

@@ -5,6 +5,8 @@
 
 <body style="background-color: #281C2D;">
 
+<div id="container">
+
 <div class="titulo">
 <h1>CARDOVER</h1>
 </div>
@@ -15,9 +17,20 @@
 
 <div class="enlaces">
 
-<a href='@Url.Action("ComoJugar")'><h2>Cómo Jugar</h2></a>
 
-<a href='@Url.Action("Jugar")'><h2>JUGAR cardover</h2></a>
+<div id="botones">
+
+    <a href='@Url.Action("Jugar")'>
+        <button type="button" class="btn btn-primary">JUGAR CARDOVER</button>
+    </a>
+
+    <a href='@Url.Action("ComoJugar")'>
+        <button type="button" class="btn btn-secondary">Como jugar</button>
+    </a>
+
+</div>
+
+</div>
 
 </div>
 </body>
