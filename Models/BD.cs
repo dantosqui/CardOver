@@ -2,7 +2,7 @@ using System.Data.SqlClient;
 using Dapper;
 public class BD{
 
-    private static string _connectionString=@"Server=.\SQLEXPRESS;DataBase=CardOver;Trusted_Connection=True;";
+    private static string _connectionString=@"Server=.;DataBase=CardOver;Trusted_Connection=True;";
 
     public static List<Cartas> TraerCartas(){
         

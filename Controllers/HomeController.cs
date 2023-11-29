@@ -41,15 +41,20 @@ public class HomeController : Controller
         return View();
     }
 
-    public Cartas RecargarCarta(){
-        Console.WriteLine("recargarcarta corrido");
-        List<Cartas> listaCartasa = BD.TraerCartas();
-        Random rnd = new Random();
+    public Cartas RecargarCarta(int opt){
+            Random rnd = new Random();
+              List<Cartas> listaCartasa ;
+        if(opt == 0)
+         listaCartasa = BD.TraerCartas();
+        else
+        listaCartasa = BD.TraerCartasEspeciales();
         int r = rnd.Next(listaCartasa.Count);
-
-        Cartas cartaResultado = new Cartas();
+           Cartas cartaResultado = new Cartas();
         cartaResultado = listaCartasa[r];
         return cartaResultado;
+      
+     
+        
     }
 
     public IActionResult GameOver(int jug){

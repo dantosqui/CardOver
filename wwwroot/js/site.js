@@ -8,7 +8,6 @@ function NoLocalStorage(){
     localStorage.setItem("vida1",100)
     localStorage.setItem("vida2",100)
     LocalStorage()
-    console.log(localStorage.getItem("vida1"))
     
   
    
@@ -26,7 +25,6 @@ function LocalStorage(){
     const perdiojug1=vida1<=0
         const perdiojug2=vida2<=0
         if(perdiojug1 && perdiojug2){
-            console.log("AAA")      
             GameOver(3)
                // $('#idModal1').modal('show')
             
@@ -45,7 +43,6 @@ function SetearVida(){
     $("#progressBar2").css({"width": vida2 + "%"});  
 }
 function TirarCarta(idCarta, jugador,puedeTirar){
-    console.log("tirar carta error")
     const carta = document.getElementById(idCarta)
     let cartaTirada 
     let divdelmedio
@@ -64,8 +61,6 @@ function TirarCarta(idCarta, jugador,puedeTirar){
         puedeTirar.innerHTML = "falso"
         cartaTirada.innerHTML = idCarta
     }else if (idCarta == cartaTirada.innerHTML && vivos){
-        console.log(vivos)
-        console.log("cartita")
         document.getElementById(lugarCarta).appendChild(carta)
         puedeTirar.innerHTML = "verdadero"
     }
@@ -76,10 +71,8 @@ function TirarCarta(idCarta, jugador,puedeTirar){
 
 
 function TirarDado(){
-    console.log("tirar dado error")
     const rnd1 = Math.floor(Math.random() * 5);
     const rnd2 = Math.floor(Math.random() * 5);
-    console.log(rnd1 + "DADO 1 RESULTADO DADO")
 
     const divdelmedio1=document.getElementById("divdelmedio1")
     const divdelmedio2=document.getElementById("divdelmedio2")
@@ -93,8 +86,7 @@ function TirarDado(){
     const defensa2 = rnd2*carta2.querySelectorAll(".defenza")[0].innerHTML
     let danioRecibeTotal1
     let danioRecibeTotal2
-    console.log(localStorage.getItem("vida1") + "VIDA 1 ")
-    if(danio2-defensa1>0 && danio2-defensa1<localStorage.getItem("vida1"))
+    if(danio2-defensa1>=0 && danio2-defensa1<(vida1/100)*constVida)
     danioRecibeTotal1 = danio2-defensa1
     else{
         if(danio2-defensa1 <=0){
@@ -104,10 +96,9 @@ function TirarDado(){
     }
 
 
-
-    if(danio1-defensa2 > 0 && danio1-defensa2<localStorage.getItem("vida2"))
+    if(danio1-defensa2 >= 0 && danio1-defensa2<(vida2/100)*constVida)
     danioRecibeTotal2 = danio1-defensa2
-    else{
+   else{
         if(danio1-defensa2 <= 0){
             danioRecibeTotal2 = 0
         }else
@@ -124,8 +115,6 @@ function TirarDado(){
         document.getElementById("spannum2").innerHTML=rnd2
         document.getElementById("spandefensa1").innerHTML=defensa1
         document.getElementById("spandefensa2").innerHTML=defensa2
-console.log(danioRecibeTotal1 + "AAAAAAAAAAAAA")
-console.log(danioRecibeTotal2 + "AAAAAAAAAAAAA")
         document.getElementById("dañototal1").innerHTML="-" +danioRecibeTotal1
         document.getElementById("dañototal2").innerHTML="-" + danioRecibeTotal2   
 
@@ -138,7 +127,6 @@ console.log(danioRecibeTotal2 + "AAAAAAAAAAAAA")
         window.localStorage.setItem("vida1",vida1)
         window.localStorage.setItem("vida2",vida2)
         document.getElementById("progressBar1").style.width = vida1
-        console.log(document.getElementById("progressBar1"))
 
         const perdiojug1=vida1<=0
         const perdiojug2=vida2<=0
@@ -147,7 +135,6 @@ console.log(danioRecibeTotal2 + "AAAAAAAAAAAAA")
 
 
     if(perdiojug1 && perdiojug2){ 
-        console.log("AAA")      
     GameOver(0)
        // $('#idModal1').modal('show')
     
@@ -194,82 +181,71 @@ const id = canciones.findIndex(x => x == mucara.src)
 if(id <3) mucara.src = canciones[id+1]
 else mucara.src = canciones[0]
 }
+function ObtenerCarta(carta,cartaID,lugarCarta,puedeTirar,opt){
 
- function RecargarCarta(){
-//esto esta a medio hacer
-console.log("aaaa")
     $.ajax(
         {
             type: 'GET',
             dataType: 'JSON', 
             url: '/Home/RecargarCarta',
-            data: {}, 
-            success: 
-            function (response)
-            {
-               const carta1ID = document.getElementById("cartaTirada1").innerHTML
-               const carta1 = document.getElementById(carta1ID)
-               const lugarCarta1 = "lugarCarta_" + carta1ID
-               
-               document.getElementById(lugarCarta1).appendChild(carta1)
-              
-              
-                document.getElementById("puedeTirar1").innerHTML = "verdadero"
-                $("#cartaImagen_" + carta1ID).attr("src", response.ImagenCarta)
-                $("#cartaNombre_" + carta1ID).html(response.nombre)
-                $("#puntosAtaque_" + carta1ID).html(response.puntosAtaque)
-                $("#puntosDefensa_" + carta1ID).html(response.puntosDefensa)
-                $("#tipoCarta_" + carta1ID).html(response.tipoCarta)
-            }
-        }
-    )
-    $.ajax(
-        {
-            type: 'GET',
-            dataType: 'JSON', 
-            url: '/Home/RecargarCarta',
-            data: {}, 
+            data: {opt:opt}, 
             success: 
             function (response)
             {
            
-                const carta2ID = document.getElementById("cartaTirada2").innerHTML
-              
-                const carta2 = document.getElementById(carta2ID)
-             
-                const lugarCarta2 = "lugarCarta_" + carta2ID
+               
                
             
               
-                document.getElementById(lugarCarta2).appendChild(carta2)
+                document.getElementById(lugarCarta).appendChild(carta)
+               puedeTirar.innerHTML = "verdadero"
               
-                document.getElementById("puedeTirar2").innerHTML = "verdadero"
                 
-                $("#cartaImagen_" + carta2ID).attr("src", response.ImagenCarta)
+                $("#cartaImagen_" + cartaID).attr("src", response.ImagenCarta)
                 
-                $("#cartaNombre_" + carta2ID).html(response.nombre)
+                $("#cartaNombre_" + cartaID).html(response.nombre)
                
-                $("#puntosAtaque_" + carta2ID).html(response.puntosAtaque)
+                $("#puntosAtaque_" + cartaID).html(response.puntosAtaque)
              
-                $("#puntosDefensa_" + carta2ID).html(response.puntosDefensa)
+                $("#puntosDefensa_" + cartaID).html(response.puntosDefensa)
 
-                $("#tipoCarta_" + carta2ID).html(response.tipoCarta)
-                console.log("AAAAAAAAAAAAAAAAAAA")
-                console.log(response.nombre)
-                console.log(response.ImagenCarta)
-                console.log(response.puntosAtaque)
-                console.log(response.tipoCarta)
-                console.log(response.idCarta)
+                $("#tipoCarta_" + cartaID).html(response.tipoCarta)
+
 
             }
         }
     )
+}
+
+ function RecargarCarta(){
+    const carta1ID = document.getElementById("cartaTirada1").innerHTML
+    const carta1 = document.getElementById(carta1ID)
+    const puedeTirar1 = document.getElementById("puedeTirar1")
+    const puedeTirar2 = document.getElementById("puedeTirar2")
+               const lugarCarta1 = "lugarCarta_" + carta1ID
+
+               const carta2ID = document.getElementById("cartaTirada2").innerHTML
+              
+               const carta2 = document.getElementById(carta2ID)
+            
+               const lugarCarta2 = "lugarCarta_" + carta2ID
+               const opt1 = carta1ID<3 ? 0:1
+               const opt2 = carta2ID<7 ? 0:1
+               console.log(opt1)
+                ObtenerCarta(carta1,carta1ID,lugarCarta1, puedeTirar1,opt1)
+              
+
+                ObtenerCarta(carta2,carta2ID,lugarCarta2,puedeTirar2,opt2)
+               
+             
+              // RecargarEspecial()
+//esto esta a medio hacer
+   
 } 
 
 //el nombre "gameOver hace referencia a CardOver: el juego de cartas por HalfOver, la mitad de HangOver"
 //bien pensado woody :v V:p
 function GameOver(jug){
-    console.log("gameover corrido")
     vivos=false
 
     document.getElementById("gameover").hidden = false;

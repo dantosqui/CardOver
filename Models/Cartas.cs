@@ -10,5 +10,6 @@ public class Cartas{
     public string ImagenCarta {get;set;}
     
     public string tipoCarta {get;set;}
+    public string Habilidad{get;set;}
 
 }
