@@ -1,150 +1,170 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Tu juego</title>
   <style>
     body {
       background-color: #281C2D;
-      color: white; 
+      color: white;
     }
   </style>
 </head>
-<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 50%; float:left;">
+
+<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0"
+  aria-valuemax="100" style="width: 50%; float:left;">
   <div id="progressBar1" class="progress-bar" style="width: 100%; background-color: green"></div>
 </div>
-<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+<div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0"
+  aria-valuemax="100">
   <div id="progressBar2" class="progress-bar" style="width: 100%; background-color: blue"></div>
 </div>
+<p style="float: right;margin-right:20px; color:blue;font-size:20px" id="cuantavida2"></p>
+<p style="margin-left:20px;color:green;font-size:20px" id="cuantavida1"></p>
 
 
-<p id="dañorecjug1"></p> <p id="dañorecjug2"></p>
+<p id="dañorecjug1"></p>
+<p id="dañorecjug2"></p>
 
-      <body onload="Empezar()"></body>
-  @{int i = 0;}
-<div id="wrappercartas" >
- 
-  <div id="cartasjugador1" >
-    @while(i<ViewBag.Cartas1.Count){
+<body onload="Empezar()"></body>
+@{
+  int i = 0;
+}
+<div id="wrappercartas">
 
-<div class="separacionCarta" id='lugarCarta_@i'>
-      <div id ="@i" >
-        
-                                                 
-        <button onclick='TirarCarta(@i, "cartas1", puedeTirar1)' class="Boton" style="margin-bottom: 2rem;" > 
+  <div id="cartasjugador1">
+    @while (i < ViewBag.Cartas1.Count)
+    {
 
-          <div class="card"  id="@i">
-            <div class="card-body">
-               <img src="@ViewBag.Cartas1[i].ImagenCarta" class="card-img-top" alt="..." id='cartaImagen_@i' style="width: 120px; height: 120px" />
-               
-              <h5 id='cartaNombre_@i' class="card-title"  style="font-size:16px">@ViewBag.Cartas1[i].nombre</h5>
-              <p class="card-text" id= "tipoCarta_@i" style="font-size:13px">@ViewBag.Cartas1[i].tipoCarta</p>
-              
-            </div>
-            <ul class="list-group list-group-flush">
-            <li id='puntosAtaque_@i' class="list-group-item danio" style="font-size:14px">@ViewBag.Cartas1[i].puntosAtaque</li>
-            <li id='puntosDefensa_@i' class="list-group-item defenza" style="font-size:14px">@ViewBag.Cartas1[i].puntosDefensa</li>
-            </ul>
-                     
-        </button>
-      </div>
+      <div class="separacionCarta" id='lugarCarta_@i'>
+        <div id="@i">
+
+
+          <button onclick='TirarCarta(@i, "cartas1", puedeTirar1,puedeTirarEspecial1)' class="Boton">
+
+            <div class="card" id="@i">
+              <div class="card-body">
+                <img src="@ViewBag.Cartas1[i].ImagenCarta" class="card-img-top" alt="..." id='cartaImagen_@i'
+                style="width: 120px; height: 120px" />
+
+                <h5 id='cartaNombre_@i' class="card-title" style="font-size:16px">@ViewBag.Cartas1[i].nombre</h5>
+                <p class="card-text" id="tipoCarta_@i" style="font-size:13px">@ViewBag.Cartas1[i].tipoCarta</p>
+
+              </div>
+              <ul class="list-group list-group-flush">
+                <li id='puntosAtaque_@i' class="list-group-item danio" style="font-size:14px">
+                  @ViewBag.Cartas1[i].puntosAtaque</li>
+                <li id='puntosDefensa_@i' class="list-group-item defenza" style="font-size:14px">
+                  @ViewBag.Cartas1[i].puntosDefensa</li>
+              </ul>
+            <p hidden class="ids" id="_@i">@ViewBag.Cartas1[i].idCarta</p>
+          </button>
+        </div>
 
 
       </div>
       i++;
-    } 
+    }
   </div>
 
-@* añadir imagen de espadita y escudito a ambos dados*@
-  <span id="dañototal1" ></span>
+  @* añadir imagen de espadita y escudito a ambos dados*@
+  <span id="dañototal1"></span>
 
-  
 
-  
-<div id="skibidinodigashtoilet" >
-  
-<div id="gameover" hidden>
-<div id="minicentro">
-  <h1 style="float: left;" >CARD OVER!</h1>
-   </div>
-  <div id="minicentro">
-  <h2 id="ganador"></h2>
-  </div>
-  
-  @* esto tambien deberia recargar las cartas idea *@
-  <div id="minicentro">
-   <button onclick="VolverAEmpezar()" type="button" class="btn btn-primary">
-    Volver a empezar
-    
-  </button>
-  <button onclick="location.href='@Url.Action("Index", "Home")'" type="button" class="btn btn-primary">
-   Ir al menú
-    
-  </button>
-  <a href='https://twitch.com'>
-     <button type="button" class="btn btn-primary">
-   Twitch
-    
-  </button>
-</a>
- </div>
-</div>
-  <div id="divdelmedio1" style="margin-right: 22rem;" >
-  
-  </div>
-  <div id="divdelmedio2" style="margin-left: 22rem;" >
-  
-  </div>
-  <div id="span1" style="margin-right: 22rem; position:absolute;">
 
-  <div id="dado1" class="dado">
-    <span class="spannum" id="spannum1" ></span>
-    <br>
-    <div><span class="spandefensa" id="spandefensa1"></span></div>
-  </div>
-  </div>
+
+  <div id="skibidinodigashtoilet">
+
+    <div id="gameover" hidden>
+      <div id="minicentro">
+        <h1 style="float: left;">CARD OVER!</h1>
+      </div>
+      <div id="minicentro">
+        <h2 id="ganador"></h2>
+      </div>
+
+      @* esto tambien deberia recargar las cartas idea *@
+      <div id="minicentro">
+        <button onclick="VolverAEmpezar()" type="button" class="btn btn-primary">
+          Volver a empezar
+
+        </button>
+        <button onclick="location.href='@Url.Action("Index", "Home")'" type="button" class="btn btn-primary">
+          Ir al menú
+
+        </button>
+        <a href='https://twitch.com'>
+          <button type="button" class="btn btn-primary">
+            Twitch
+
+          </button>
+        </a>
+      </div>
+    </div>
+    <div id="divdelmedio1" style="margin-right: 22rem;">
+
+    </div>
+    <div id="divdelmedio2" style="margin-left: 22rem;">
+
+    </div>
+    <div id="span1" style="margin-right: 22rem; position:absolute;">
+
+      <div id="dado1" class="dado">
+        <span class="spannum" id="spannum1"></span>
+        <br>
+        <div><span class="spandefensa" id="spandefensa1"></span></div>
+      </div>
+    </div>
     <div id="span2" style="margin-left: 22rem; position:absolute;">
-   <div id="dado2" class="dado">
-    <span class="spannum" id="spannum2"></span>
-    <br>
-    <span class="spandefensa" id="spandefensa2"></span>
-  </div>
-  </div>
-  <button onclick="TirarDado()" type="button" class="btn btn-primary" id="dadovich" style="margin-top: 1rem;font-size:100px;position:absolute">
-    🎲
-    
-  </button>
-</div>
+      <div id="dado2" class="dado">
+        <span class="spannum" id="spannum2"></span>
+        <br>
+        <span class="spandefensa" id="spandefensa2"></span>
+      </div>
+    </div>
+    <button onclick="TirarDado()" type="button" class="btn btn-primary" id="dadovich"
+      style="margin-top: 1rem;font-size:100px;position:absolute">
+      🎲
 
- 
+    </button>
+  </div>
 
-<span id="dañototal2"></span>
-  @{int j = 0;}
+
+
+  <span id="dañototal2"></span>
+  @{
+    int j = 0;
+  }
   <div id="cartasjugador2">
-    @while(j<ViewBag.Cartas2.Count){
-<div class="separacionCarta" id='lugarCarta_@i'>
-      <div id = "@i">
-        
-
-          <button onclick='TirarCarta(@i, "cartas2", puedeTirar2)' class="Boton" style="margin-bottom:2rem;">
-
-            <div class="card" id="@i" >
-            <div class="card-body">
-              <img src="@ViewBag.Cartas2[j].ImagenCarta" class="card-img-top" alt="..." id='cartaImagen_@i' style="width: 120px; height: 120px" />
-              
+    @while (j < ViewBag.Cartas2.Count)
+    {
+      <div class="separacionCarta" id='lugarCarta_@i'>
+        <div id="@i">
 
 
-              <h5 id='cartaNombre_@i' class="card-title" style="font-size:16px">@ViewBag.Cartas2[j].nombre</h5>
-              <p class="card-text" id= "tipoCarta_@i" style="font-size:13px" >@ViewBag.Cartas2[j].tipoCarta</p>
-              @* <p class="card-text">@ViewBag.Cartas2[j].ImagenCarta</p> *@
+          <button onclick='TirarCarta(@i, "cartas2", puedeTirar2,puedeTirarEspecial2)' class="Boton">
+
+            <div class="card" id="@i">
+              <div class="card-body">
+                <img src="@ViewBag.Cartas2[j].ImagenCarta" class="card-img-top" alt="..." id='cartaImagen_@i'
+                style="width: 120px; height: 120px" />
+
+
+
+                <h5 id='cartaNombre_@i' class="card-title" style="font-size:16px">@ViewBag.Cartas2[j].nombre</h5>
+                <p class="card-text" id="tipoCarta_@i" style="font-size:13px">@ViewBag.Cartas2[j].tipoCarta</p>
+                @* <p class="card-text">@ViewBag.Cartas2[j].ImagenCarta</p> *@
+              </div>
+              <ul class="list-group list-group-flush">
+                <li id='puntosAtaque_@i' class="list-group-item danio" style="font-size:14px">
+                  @ViewBag.Cartas2[j].puntosAtaque</li>
+                <li id='puntosDefensa_@i' class="list-group-item defenza" style="font-size:14px">
+                  @ViewBag.Cartas2[j].puntosDefensa</li>
+              </ul>
+
             </div>
-            <ul class="list-group list-group-flush">
-            <li id='puntosAtaque_@i' class="list-group-item danio" style="font-size:14px">@ViewBag.Cartas2[j].puntosAtaque</li>
-            <li id='puntosDefensa_@i' class="list-group-item defenza" style="font-size:14px">@ViewBag.Cartas2[j].puntosDefensa</li>
-            </ul>
-           
-</div>
 
-
+ <p hidden class="ids" id="_@i">@ViewBag.Cartas2[j].idCarta</p>
 
 
 
@@ -153,10 +173,10 @@
 
 
       </div>
-       i++;
-        j++;
+      i++;
+      j++;
     }
-  
+
 
   </div>
 </div>
@@ -164,7 +184,8 @@
 
 
 
-<div class="modal fade" id="idModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="idModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
 
     <div class="modal-content">
@@ -190,7 +211,8 @@
 </div>
 
 
-<div class="modal fade" id="idModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="idModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
 
     <div class="modal-content">
@@ -212,8 +234,9 @@
 
 
 
-<div class="modal fade" id="divTodasLasCartas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-<img src = "pilonDeCartas">
+<div class="modal fade" id="divTodasLasCartas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <img src="pilonDeCartas">
 </div>
 
 
@@ -222,7 +245,10 @@
 
 <p id="puedeTirar1" hidden="true">verdadero</p>
 <p id="puedeTirar2" hidden="true">verdadero</p>
-<audio id="musica" onended="Soundtrack(musica)" src="https://vgmsite.com/soundtracks/plants-vs.-zombies/bgtwdvngxd/04.%20Grasswalk.mp3" autoplay allow="autoplay" >
+<p id="puedeTirarEspecial1" hidden="true">verdadero</p>
+<p id="puedeTirarEspecial2" hidden="true">verdadero</p>
+<audio id="musica" onended="Soundtrack(musica)"
+  src="https://vgmsite.com/soundtracks/plants-vs.-zombies/bgtwdvngxd/04.%20Grasswalk.mp3" autoplay allow="autoplay">
 
 </audio>
 <p id="cartaTirada1" hidden="true"></p>
