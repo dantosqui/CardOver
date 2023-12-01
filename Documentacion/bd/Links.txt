@@ -1,0 +1,18 @@
+Figma - https://www.figma.com/file/v1PVrWbuOhYfnqXVB0ENW2/cardover?type=design&node-id=72%3A38201&mode=design&t=XsbCtdi2ztiMdh0t-1
+
+Trello - https://trello.com/invite/b/iz66raAp/ATTI9e66bcd2b96a2be4c10c1e5c135128e04633DA59/tp-final-hangover-cards
+
+
+DESCRIPCION:
+CardOver™ 
+
+Somos la iniciativa CardOver™ by HalfOver™  by Hangover.
+Somos Dante Verdi, Tomas FZ y Zarek Nazar.
+Nuestro proyecto consta de un juego de cartas de temática medieval / humorística.
+
+Funcionamiento del juego:
+Las partidas son de dos jugadores. Ambos se enfrentan para derrotar al oponente reduciendo su barra de vida a 0. 
+Al comenzar se reparten 4 cartas. Una carta es especial (con habilidad) y las demás son comunes.
+Ambos jugadores tiran una carta por turno y tiran un dado. Ambos tiran al mismo tiempo. El daño o defensa depende del número que salga en el dado.
+Las cartas comunes hacen una determinada cantidad de daño, mientras que las cartas especiales tienen diferentes efectos, además de su daño y defensa.
+Ambos jugadores pueden ver las cartas del rival. 
