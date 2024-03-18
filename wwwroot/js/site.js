@@ -63,6 +63,7 @@ function TirarCarta(idCarta, jugador, puedeTirar, puedeTirarEspecial) {
 
     if (puedeTirar.innerHTML == "verdadero" && vivos) {
 
+        //si no es una carta especial, o es una carta especial y puede tirar especiales
         if ((idCarta != 3 && idCarta != 7) || ((idCarta == 3 || idCarta == 7) && puedeTirarEspecial.innerHTML == "verdadero")) {
 
             const tirarAudio = new Audio('https://dl.vgmdownloads.com/soundtracks/plants-vs.-zombies-2009-gamerip-pc-ios-x360-ps3-ds-android-mobile-psvita-xbox-one-ps4-switch/yytiqdghnq/SFX%20paper.mp3')
@@ -115,6 +116,9 @@ function TirarDado() {
     if (tieneEfecto2)
         RealizarEfecto(efectoActual2, 1)
 
+        if(aplicandoEfecto1 == true) aplicandoEfecto1=false
+        if(aplicandoEfecto2 == true) aplicandoEfecto2=false
+
 
     const danio1 = rnd1 * carta1.querySelectorAll(".danio")[0].innerHTML
     const danio2 = rnd2 * carta2.querySelectorAll(".danio")[0].innerHTML
@@ -139,7 +143,7 @@ function TirarDado() {
     danioRecibeTotal2 += extra1
     danioRecibeTotal1 -=extraDefenza1
     danioRecibeTotal2 -=extraDefenza2
-    console.log(extra1)
+    console.log("extra defensa 1: " , extraDefenza1, "extradefensa 2: ", extraDefenza2)    
     if (!ismuertesubita) {
         vida1 -= (danioRecibeTotal1 / constVida) * 100
         vida2 -= (danioRecibeTotal2 / constVida) * 100
@@ -193,7 +197,8 @@ function TirarDado() {
 
     }
 }
-
+let aplicandoEfecto1= false
+let aplicandoEfecto2=false
 let efectoActual1;
 let efectoActual2;
 function Efecto(idC, opt) {
@@ -210,10 +215,11 @@ function Efecto(idC, opt) {
 
                     if (opt == 0) {
                         efectoActual1 = response
-
+aplicandoEfecto1 = true
                         tieneEfecto1 = true
                     } else {
                         efectoActual2 = response
+                        aplicandoEfecto2=true;
                         tieneEfecto2=true
                     }
 
@@ -233,18 +239,16 @@ let rondas2=0
 function RealizarEfecto(efecto, opt) {
     let rondas
     const efectoVariables = efecto.split(',')
+    
 console.log("RONDAS1= "+rondas1)
-    if (opt == 0) {
-        if (rondas1 == 0)
+console.log("RONDAS2= "+rondas2)
+    if (aplicandoEfecto1) 
             rondas1 = efectoVariables[2]
-        rondas1--
-        rondas = rondas1
-    } else {
-        if (rondas2 == 0)
+    else if (aplicandoEfecto2)
             rondas2 = efectoVariables[2]
-        rondas2--
-        rondas = rondas2
-    }
+
+    if(rondas1>0 && opt==0)rondas1--
+    if(rondas2>0 && opt==1)rondas2--
 
 
 
@@ -272,10 +276,11 @@ else
 extraDefenza2 = efectoVariables[1]
     }
 
-    if (rondas == 0 && opt == 0) {
+    if (rondas1 == 0 && opt == 0) {
         tieneEfecto1 = false
         document.getElementById("puedeTirarEspecial1").innerHTML="verdadero"
-    } else if (rondas==0) {
+    }
+     if (rondas2==0 && opt == 1) {
         tieneEfecto2 = false
         document.getElementById("puedeTirarEspecial2").innerHTML="verdadero"
     }
@@ -379,7 +384,7 @@ function RecargarCarta() {
 }
 
 //el nombre "gameOver hace referencia a CardOver: el juego de cartas por HalfOver, la mitad de HangOver"
-//bien pensado woody :v V:p
+//bien pensado woody :v V:pv     d:V
 function GameOver(jug) {
     vivos = false
 
@@ -399,7 +404,7 @@ function GameOver(jug) {
 
 }
 
-
+//eu sabes que bueno 
 
 
 function SetearColorEspecial(carta) {

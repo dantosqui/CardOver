@@ -2,7 +2,7 @@ using System.Data.SqlClient;
 using Dapper;
 public class BD{
 
-    private static string _connectionString=@"Server=.\SQLEXPRESS;DataBase=CardOver;Trusted_Connection=True;";
+    private static string _connectionString=@"Server=localhost;DataBase=CardOver;Trusted_Connection=True;";
 
     public static List<Cartas> TraerCartas(){
         
@@ -16,6 +16,7 @@ public class BD{
     public static List<Cartas> TraerCartasEspeciales(){
         using (SqlConnection db = new SqlConnection(_connectionString)){
             string sql = "Select * from CartasEspeciales";
+           
             return db.Query<Cartas>(sql).ToList();
         }
     }
