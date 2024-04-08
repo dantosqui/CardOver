@@ -209,6 +209,9 @@ function TirarDado() {
 
     }
 }
+
+
+
 let aplicandoEfecto1 = false
 let aplicandoEfecto2 = false
 let efectoActual1;
@@ -410,6 +413,7 @@ function GameOver(jug) {
     document.getElementById("gameover").hidden = false;
     // window.location.assign("GameOver?jug="+jug)
     const ganador = document.getElementById("ganador")
+    localStorage.setItem("Ganador",ganador)
     if (jug == 0) {
         ganador.innerHTML = "Empate"
     } else if (jug == 1) {
@@ -417,7 +421,7 @@ function GameOver(jug) {
     } else {
         ganador.innerHTML = "Gana jugador 2"
     }
-    NoLocalStorage()
+    
 
 
 
@@ -449,7 +453,9 @@ function Empezar(uno, dos) {
     SetearColorEspecial(cartaEsp23)
     if (localStorage.length == 0) {
         NoLocalStorage()
-    } else {
+    } else if (localStorage.ganador != null){
+        GameOver(localStorage.ganador)
+    }else{
         LocalStorage()
     }
 
