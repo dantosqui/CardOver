@@ -46,8 +46,6 @@ function SetearVida() {
 
     document.getElementById("cuantavida1").innerHTML = Math.round((vida1 / 100) * constVida)
     document.getElementById("cuantavida2").innerHTML = Math.round((vida2 / 100) * constVida)
-    console.log(document.getElementById("cuantavida1").innerHTML)
-    console.log(document.getElementById("cuantavida2").innerHTML)
 }
 function TirarCarta(idCarta, jugador, puedeTirar, puedeTirarEspecial) {
     
@@ -108,14 +106,32 @@ function TirarDado() {
     if (idCarta1 == 3) {
         document.getElementById("puedeTirarEspecial1").innerHTML = "falso"
         Efecto(idCarta1, 0)
+        efectoVariables = efectoActual1.split(',')
+        
+        document.getElementById("efecto2").style.textAlign = "center"
+        switch(efectoVariables[0]){
+            case "veneno":
+                document.getElementById("efecto2").style.color = "green"
+                document.getElementById("efecto2").innerHTML = ("💉" + "<br />" + `${efectoVariables[2]} rondas`).toUpperCase()
+                break;
+                case "curacion":
+                    document.getElementById("efecto2").style.color = "red"
+                    document.getElementById("efecto2").innerHTML = ("🏥" + "<br />" + `${efectoVariables[2]} rondas`).toUpperCase()
+                    break;
+                    case "defenza":
+                        document.getElementById("efecto2").style.color = "white"
+                        document.getElementById("efecto2").innerHTML = ("🛡️" + "<br />" + `${efectoVariables[2]} rondas`).toUpperCase()
+                        break;
+        }
+        
     }
     if (idCarta2 == 7) {
         document.getElementById("puedeTirarEspecial2").innerHTML = "falso"
         Efecto(idCarta2, 1)
     }
 
-    if (tieneEfecto1)
-        RealizarEfecto(efectoActual1, 0)
+    if (tieneEfecto1){
+        RealizarEfecto(efectoActual1, 0)}
     if (tieneEfecto2)
         RealizarEfecto(efectoActual2, 1)
 
@@ -130,8 +146,7 @@ function TirarDado() {
     let danioRecibeTotal1
     let danioRecibeTotal2
     if (danio2 - defensa1 >= 0){
-        danioRecibeTotal1 = Math.round(danio2 - defensa1)
-        console.log("ES LA SEÑALL")}
+        danioRecibeTotal1 = Math.round(danio2 - defensa1)}
     else {
         danioRecibeTotal1 = 0
     }
@@ -144,28 +159,19 @@ function TirarDado() {
 
     }
     danioRecibeTotal1 += Number(extra2)
-    console.log("looook")
     danioRecibeTotal2 += Number(extra1)
     danioRecibeTotal1 -= Number(extraDefenza1)
     danioRecibeTotal2 -= Number(extraDefenza2)
-    console.log("extra defensa 1: ", extraDefenza1, "extradefensa 2: ", extraDefenza2)
     if (!ismuertesubita) {
         vida1 -= (danioRecibeTotal1 / constVida) * 100
-        console.log("vida1: " + vida1)
-        console.log("daniorecibidoTotal1: " + danioRecibeTotal1) //ya de aca tiene un -. entonces cuando pasa abajo y se le agrega otro tiene 2
         vida2 -= (danioRecibeTotal2 / constVida) * 100
-        console.log("vida2 " + vida2)
 
         document.getElementById("spannum1").innerHTML = rnd1
         document.getElementById("spannum2").innerHTML = rnd2
         document.getElementById("spandefensa1").innerHTML = defensa1
         document.getElementById("spandefensa2").innerHTML = defensa2
         document.getElementById("dañototal1").innerHTML = "-" + Math.round(Math.abs(danioRecibeTotal1))
-        console.log("dañorecibetotal " + danioRecibeTotal1)
-        console.log("Daño total 1" + document.getElementById("dañototal1").innerHTML)
         document.getElementById("dañototal2").innerHTML = "-" + Math.round(Math.abs(danioRecibeTotal2))
-        console.log("Daño total 2" + document.getElementById("dañototal2").innerHTML)
-        console.log("dañorecibetotal2 " + danioRecibeTotal2)
 
 
         /*NO ME SALE LO TERMINO DESPUES */ //salio o no?? parece que anda -dante
@@ -251,25 +257,29 @@ function Efecto(idC, opt) {
 }
 let rondas1 = 0
 let rondas2 = 0
+efectoVariables = []
 function RealizarEfecto(efecto, opt) {
     let rondas
-    const efectoVariables = efecto.split(',')
+    efectoVariables = efecto.split(',')
 
-    console.log("RONDAS1= " + rondas1)
-    console.log("RONDAS2= " + rondas2)
-    if (aplicandoEfecto1)
+  
+
+    if (aplicandoEfecto1){
 
         rondas1 = efectoVariables[2]
-    else if (aplicandoEfecto2)
+        
+}
+    else if (aplicandoEfecto2){
         rondas2 = efectoVariables[2]
 
-    if (rondas1 > 0 && opt == 0) rondas1--
+ } 
+   if (rondas1 > 0 && opt == 0) rondas1--
     if (rondas2 > 0 && opt == 1) rondas2--
 
-    console.log("HEY ZAREK ACAAAAAAAAAAAAAAA: " + vida1/100*constVida)
+
 
     if (efectoVariables[0] == "veneno") {
-
+        
         if (opt == 0)
             extra1 = efectoVariables[1]
         else
@@ -287,7 +297,6 @@ function RealizarEfecto(efecto, opt) {
                 efectoVariables[1]-=(vida2/100*constVida)-(constVida-efectoVariables[1])
 
             vida2 += (Number(efectoVariables[1]) / constVida) * 100
-            console.log(vida2 + " CURACION")
             SetearVida()
             window.localStorage.setItem("vida2", vida2)
         }
@@ -306,7 +315,7 @@ function RealizarEfecto(efecto, opt) {
         tieneEfecto2 = false
         document.getElementById("puedeTirarEspecial2").innerHTML = "verdadero"
     }
-    console.log(rondas + "like i love yoy")
+    
 }
 
 function ObtenerLugarCarta() {
@@ -343,7 +352,6 @@ function ObtenerCarta(carta, cartaID, lugarCarta, puedeTirar, opt) {
                     puedeTirar.innerHTML = "verdadero"
 
                     document.getElementById("_" + cartaID).innerHTML = response.idCarta
-                    console.log(document.getElementById("_" + cartaID).innerHTML)
                     $("#cartaNombre_" + cartaID).html(response.nombre)
 
                     $("#puntosAtaque_" + cartaID).html(response.puntosAtaque)
@@ -357,13 +365,11 @@ function ObtenerCarta(carta, cartaID, lugarCarta, puedeTirar, opt) {
         }
     )
     setTimeout(() => { ActualizarImg(cartaID, opt) }, 20);
-    console.log(document.getElementById("_" + cartaID).innerHTML + " ANTES")
 
 
 }
 function ActualizarImg(cartaID, opt) {
     const idReal = document.getElementById("_" + cartaID).innerHTML
-    console.log(document.getElementById("_" + cartaID).innerHTML + " DESPUES")
     $.ajax(
         {
             type: 'POST',
@@ -373,7 +379,6 @@ function ActualizarImg(cartaID, opt) {
             success:
                 function (response) {
 
-                    console.log(response + "AAA")
                     $("#cartaImagen_" + cartaID).attr("src", response)
 
                 }
