@@ -27,10 +27,6 @@ div.enlaces{
 }
 
 
-body {
-  
-}
-
 footer {
   position: fixed; 
   bottom: 0; 
@@ -96,6 +92,21 @@ div.card {
   
 }
 
+.minicentro2{
+  margin-left: 200px;
+  margin-top: 200px;
+  margin-bottom: 200px;
+  margin-right: 200px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.dadovich{
+  background-color: white;
+  color: black;
+  border: 2px solid #04AA6D; /* Green */
+}
+
 div.separacionCarta{
  margin-bottom: 2rem;
 }
@@ -104,13 +115,14 @@ div.separacionCarta{
   position: fixed;
   margin-bottom: 30rem;
 }
-#minicentro{
-  display: flex;
- justify-content: center;
+.minicentro{
+ display: flex;
+ justify-content: space-evenly;
  align-items: center;
- gap: 2rem;
+ gap: 20rem;
  position: absolute;
 }
+
 #skibidinodigashtoilet{
   display: flex;
  justify-content: center;
