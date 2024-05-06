@@ -107,55 +107,14 @@ function TirarDado() {
     if (idCarta1 == 3) {
         document.getElementById("puedeTirarEspecial1").innerHTML = "falso"
         Efecto(idCarta1, 0)
-        efectoVariables = efectoActual1.split(',')
-        eV1 = efectoVariables[2]
-        document.getElementById("efecto2").style.textAlign = "center"
-        switch(efectoVariables[0]){
-            case "veneno":
-                document.getElementById("efecto2").style.color = "green"
-                stringEfecto1 = "💉" + "<br />" 
-                break;
-                case "curacion":
-                    document.getElementById("efecto2").style.color = "red"
-                    stringEfecto1="🏥" + "<br />" 
-                    break;
-                    case "defenza":
-                        document.getElementById("efecto2").style.color = "white"
-                        stringEfecto1="🛡️" + "<br />"
-                        break;
-        }
+
     }
     if (idCarta2 == 7) {
         document.getElementById("puedeTirarEspecial2").innerHTML = "falso"
         Efecto(idCarta2, 1)
-        efectoVariables = efectoActual2.split(',')
-        eV2 = efectoVariables[2]
-        document.getElementById("efecto1").style.textAlign = "center"
-        switch(efectoVariables[0]){
-            case "veneno":
-                document.getElementById("efecto1").style.color = "green"
-                stringEfecto2="💉" + "<br />" 
-                break;
-                case "curacion":
-                    document.getElementById("efecto1").style.color = "red"
-                    stringEfecto2="🏥" + "<br />" 
-                    break;
-                    case "defenza":
-                        document.getElementById("efecto1").style.color = "white"
-                        stringEfecto2="🛡️" + "<br />" 
-                        break;
-        }
+
     }
-    if(eV1>0){
-        document.getElementById("cuantoFalta1").innerHTML = `${eV1} rondas`
-        document.getElementById("efecto1").innerHTML = (stringEfecto1).toUpperCase()
-        eV1--
-    }
-    if(eV2>0){
-        document.getElementById("cuantoFalta2").innerHTML = `${eV2} rondas`
-        document.getElementById("efecto2").innerHTML = (stringEfecto2).toUpperCase()
-        eV2--
-    }
+   
     if (tieneEfecto1){
         RealizarEfecto(efectoActual1, 0)}
     if (tieneEfecto2)
